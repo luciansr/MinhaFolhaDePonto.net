@@ -60,13 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FolhaDePonto.Business\FolhaDePonto.Business.csproj">
-      <Project>{2593b971-c4c4-4cf2-86e2-803fd728ac12}</Project>
-      <Name>FolhaDePonto.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FolhaDePonto.Repository\FolhaDePonto.Repository.csproj">
       <Project>{b89343a1-30c1-44b0-9992-4077ea2ef9be}</Project>
       <Name>FolhaDePonto.Repository</Name>

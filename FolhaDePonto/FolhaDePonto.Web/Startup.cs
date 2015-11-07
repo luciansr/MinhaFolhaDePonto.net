@@ -1,46 +1,39 @@
-﻿using FolhaDePonto.Web.Authentication.Providers;
-using Microsoft.Owin.Cors;
-using Microsoft.Owin.Security.Google;
+﻿using FolhaDePonto.Business;
+using FolhaDePonto.Infrastructure;
+using FolhaDePonto.Web.Authentication;
+using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace FolhaDePonto.Web
 {
     public class Startup
     {
-        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
-        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
-
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+
+            ConfigureOAuth(app);
+
             WebApiConfig.Register(config);
-            app.UseCors(CorsOptions.AllowAll);
-            //app.UseWebApi(config);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            app.UseWebApi(config);
         }
 
-        //More code here...
-        public void ConfigureOAuth(IAppBuilder app)
+        private void ConfigureOAuth(IAppBuilder app)
         {
-            //use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
-            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
-            //Configure Google External Login
-            googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
+            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
-                ClientId = "xxx",
-                ClientSecret = "xxx",
-                Provider = new GoogleAuthProvider()
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/GetToken"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(24),
+                Provider = (new AuthenticationProvider(Factory.Instance.Get<AuthService>()))
             };
-            app.UseGoogleAuthentication(googleAuthOptions);
 
-
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }
