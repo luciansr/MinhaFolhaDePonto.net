@@ -1,0 +1,83 @@
+﻿/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container.principal {
+  padding: 60px 15px 0 60px !important;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+
+
+/*aiushdiauhsd*/
+
+
+.dl-menu.dl-animate-out-1 {
+	animation: MenuAnimOut1 0.4s linear forwards;
+}
+
+@keyframes MenuAnimOut1 {
+	50% {
+		transform: translateZ(-250px) rotateY(30deg);
+	}
+	75% {
+		transform: translateZ(-372.5px) rotateY(15deg);
+		opacity: .5;
+	}
+	100% {
+		transform: translateZ(-500px) rotateY(0deg);
+		opacity: 0;
+	}
+}
+
+.dl-menu.dl-animate-in-1 {
+	animation: MenuAnimIn1 0.3s linear forwards;
+}
+
+@keyframes MenuAnimIn1 {
+	0% {
+		transform: translateZ(-500px) rotateY(0deg);
+		opacity: 0;
+	}
+	20% {
+		transform: translateZ(-250px) rotateY(30deg);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translateZ(0px) rotateY(0deg);
+		opacity: 1;
+	}
+}

@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/FolhaDePonto/FolhaDePonto.Business/bin/Debug
+/FolhaDePonto/FolhaDePonto.Business/obj/Debug
+/FolhaDePonto/FolhaDePonto.Domain/bin/Debug
+/FolhaDePonto/FolhaDePonto.Domain/obj/Debug
+/FolhaDePonto/FolhaDePonto.Infrastructure/bin/Debug
+/FolhaDePonto/FolhaDePonto.Infrastructure/obj/Debug
+/FolhaDePonto/FolhaDePonto.Repository/bin/Debug
+/FolhaDePonto/FolhaDePonto.Repository/obj/Debug
+/FolhaDePonto/FolhaDePonto.Web/bin
+/FolhaDePonto/FolhaDePonto.Web/obj/Debug
+/FolhaDePonto/packages

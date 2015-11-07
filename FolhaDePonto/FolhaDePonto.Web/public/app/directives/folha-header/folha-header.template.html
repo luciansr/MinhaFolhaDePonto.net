@@ -1,0 +1,31 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">Folha de Ponto</a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="item in folhaHeaderCtrl.menu" ng-class="{'active': folhaHeaderCtrl.isActive(item)}" dropdown>
+                    <a ng-href="{{item.href}}" ng-if="!folhaHeaderCtrl.hasChildNodes(item)"  ng-bind="item.title"></a>
+
+                    <a ng-href="javascript:viod(0)" ng-if="folhaHeaderCtrl.hasChildNodes(item)"
+                       dropdown-toggle>{{item.title}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" ng-if="folhaHeaderCtrl.hasChildNodes(item)" role="menu">
+                        <li role="menuitem" ng-repeat="subitem in item.childNodes" dropdown>
+                            <a ng-href="{{subitem.href}}" ng-bind="subitem.title"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

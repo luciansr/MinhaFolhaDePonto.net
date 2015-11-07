@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" ng-app="folhaDePonto">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="public/img/favicon.ico">
+
+    <title>Minha folha de ponto</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="public/libs/bootstrap/paper-bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="public/css/sticky-footer.css" rel="stylesheet" />
+    <!--3rd party-->
+    <link href="public/libs/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="public/libs/NProgress/nprogress.css" rel="stylesheet" />
+    <link href="public/libs/block-ui/angular-block-ui.css" rel="stylesheet" />
+
+    <!--mine-->
+    <link href="public/css/folha-de-ponto.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- header -->
+    <folha-header></folha-header>
+
+    <!-- views content -->
+    <ng-view></ng-view>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Place sticky footer content here. <b><span class="pull-right" ng-bind="'Olá, ' + cedocFooterCtrl.username"></span></b></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="public/libs/jquery/jquery-2.1.4.min.js"></script>
+    <script src="public/libs/bootstrap/js/bootstrap.min.js"></script>
+    <!--3rd party-->
+    <script src="public/libs/toastr/toastr.min.js"></script>
+    <script src="public/libs/NProgress/nprogress.js"></script>
+
+    <!--angular-->
+    <script src="public/libs/angularjs/angular.min.js"></script>
+    <script src="public/libs/angularjs/angular-route.min.js"></script>
+    <script src="public/libs/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="public/libs/angular-messages/angular-messages.min.js"></script>
+    <script src="public/libs/angular-animate/angular-animate.min.js"></script>
+
+    <!--3rd party angular dependent-->
+    <script src="public/libs/angular-ui-bootstrap/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script src="public/libs/block-ui/angular-block-ui.min.js"></script>
+    <!--videogular-->
+
+    <!--angular app-->
+    <script src="public/app/app.js"></script>
+    <script src="public/app/app.config.js"></script>
+
+    <!--services-->
+    <script src="public/app/services/base/base.service.js"></script>
+    <script src="public/app/services/util/ngProgress.service.js"></script>
+    <script src="public/app/services/util/toastr.service.js"></script>
+    <script src="public/app/services/auth/httpInterceptor.service.js"></script>
+    <script src="public/app/services/auth/authentication.service.js"></script>
+    <script src="public/app/services/http/validation.service.js"></script>
+    <script src="public/app/services/http/document.service.js"></script>
+
+    <!--directives-->
+    <script src="public/app/directives/folha-header/folha-header.directive.js"></script>
+    <script src="public/app/directives/folha-table/folha-table.directive.js"></script>
+
+    <!--controllers-->
+    <script src="public/app/components/home/home.controller.js"></script>
+</body>
+</html>

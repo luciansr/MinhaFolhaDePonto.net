@@ -1,0 +1,20 @@
+﻿
+<div class="panel panel-default">
+    <div class="panel-heading" ng-if="header" ng-bind="header"></div>
+    <div class="panel-body" style="padding:0">
+        <table class="table table-striped table-hover" style="margin:0">
+            <thead>
+                <tr>
+                    <th ng-if="showLineNumbers == 'true'">#</th>
+                    <th ng-repeat="column in columns" ng-bind="column.caption"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="field in fields">
+                    <td ng-if="showLineNumbers == 'true'" ng-bind="$index + 1 + folhaTableCtrl.offset"></td>
+                    <td ng-repeat="column in columns" ng-bind="field[column.dataField]">Column content</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
