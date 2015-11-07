@@ -34,3 +34,4 @@
         blockUIConfig.templateUrl = 'public/libs/block-ui/block-ui-template.html';
     }
 })();
+//# sourceMappingURL=app.config.js.map
