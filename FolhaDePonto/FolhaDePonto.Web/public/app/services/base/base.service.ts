@@ -3,7 +3,7 @@
         export class Service {
 
             private $http: ng.IHttpService;
-            private $q: ng.IQService;
+            protected $q: ng.IQService;
 
             private baseServiceUrl;
 

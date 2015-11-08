@@ -28,19 +28,19 @@
                     self.ngProgressService.Start();
                     ++self.numChamadas;
 
-                    //config.headers = config.headers || {};
+                    config.headers = config.headers || {};
                 
-                    //if (self.$window.localStorage["userInfo"] != null) {
-                    //    var userInfo = JSON.parse(self.$window.localStorage["userInfo"]);
+                    if (self.$window.localStorage["userInfo"] != null) {
+                        var userInfo = JSON.parse(self.$window.localStorage["userInfo"]);
 
-                    //    if (userInfo != null) {
-                    //        var token = userInfo.accessToken;
-                    //    }
-                    //}
+                        if (userInfo != null) {
+                            var token = userInfo.accessToken;
+                        }
+                    }
 
-                    //if (token) {
-                    //    config.headers.Authorization = 'Bearer ' + token;
-                    //}
+                    if (token) {
+                        config.headers.Authorization = 'Bearer ' + token;
+                    }
 
                     return config;
                 };
@@ -65,7 +65,7 @@
 
                     if (rejection.status === 401) {
                         self.toastrService.Error('Acesso não autorizado.');
-                        //self.$location.path('/Login');
+                        self.$location.path('/Login');
                     }
 
                     return self.$q.reject(rejection);

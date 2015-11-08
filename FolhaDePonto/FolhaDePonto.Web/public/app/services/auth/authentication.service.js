@@ -9,13 +9,28 @@ var FolhaDePonto;
     (function (Services) {
         var AuthenticationService = (function (_super) {
             __extends(AuthenticationService, _super);
-            function AuthenticationService($http, $q) {
+            function AuthenticationService($http, $q, $window) {
                 _super.call(this, $http, $q, 'Authentication');
+                this.$window = $window;
+                if ($window.localStorage["userInfo"]) {
+                    this.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+                }
             }
             AuthenticationService.prototype.GetCurrentUsername = function () {
                 return _super.prototype.Get.call(this, 'GetCurrentUsername');
             };
-            AuthenticationService.$inject = ['$http', '$q'];
+            AuthenticationService.prototype.logout = function () {
+                var self = this;
+                var deferred = self.$q.defer();
+                self.$window.localStorage["userInfo"] = null;
+                self.userInfo = null;
+                deferred.resolve(true);
+                return deferred.promise;
+            };
+            AuthenticationService.prototype.getUserInfo = function () {
+                return this.userInfo;
+            };
+            AuthenticationService.$inject = ['$http', '$q', '$window'];
             return AuthenticationService;
         })(FolhaDePonto.Base.Service);
         Services.AuthenticationService = AuthenticationService;
