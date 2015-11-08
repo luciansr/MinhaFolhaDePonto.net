@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="google-id.js" />
     <Content Include="index.html" />
     <Content Include="public\app\components\home\home.html" />
     <Content Include="public\app\directives\folha-header\folha-header.template.html" />
