@@ -11,12 +11,13 @@
             controller: controller,
             controllerAs: 'folhaHeaderCtrl'
         };
-        controller.$inject = ['$location'];
-        function controller($location) {
+        controller.$inject = ['$location', 'authenticationService'];
+        function controller($location, authenticationService) {
             var self = this;
-            self.isActive = isActive;
             var menuHash = {};
+            self.isActive = isActive;
             self.hasChildNodes = hasChildNodes;
+            self.logout = logout;
             self.menu = [
                 {
                     title: 'Início',
@@ -55,6 +56,9 @@
                 //console.log(item);
                 menuHash[item.$$hashKey] = item.childNodes !== undefined && item.childNodes.length > 0;
                 return menuHash[item.$$hashKey];
+            }
+            function logout() {
+                authenticationService.logout();
             }
         }
         return directive;

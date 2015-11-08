@@ -15,14 +15,16 @@
             controllerAs: 'folhaHeaderCtrl'
         };
 
-        controller.$inject = ['$location'];
+        controller.$inject = ['$location', 'authenticationService'];
 
-        function controller($location: ng.ILocationService) {
+        function controller($location: ng.ILocationService, authenticationService: FolhaDePonto.Services.AuthenticationService) {
             var self = this;
-            self.isActive = isActive;
             var menuHash = {};
 
+            self.isActive = isActive;
             self.hasChildNodes = hasChildNodes;
+
+            self.logout = logout;
 
             self.menu = [
                 {
@@ -65,6 +67,10 @@
                 //console.log(item);
                 menuHash[item.$$hashKey] = item.childNodes !== undefined && item.childNodes.length > 0;
                 return menuHash[item.$$hashKey];
+            }
+
+            function logout() {
+                authenticationService.logout();
             }
         }
 

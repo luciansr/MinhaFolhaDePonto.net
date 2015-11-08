@@ -33,7 +33,11 @@
                 self.$window.localStorage["userInfo"] = null;
                 self.userInfo = null;
 
-                deferred.resolve(true);
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                    deferred.resolve(true);
+                });
 
                 return deferred.promise;
             }
