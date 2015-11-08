@@ -12,14 +12,18 @@ namespace FolhaDePonto.Business
 {
     public class AuthService : BaseService
     {
-        public AuthService(IUnitOfWork uow) : base(uow) { }
+        private GoogleService _googleService;
+        public AuthService(IUnitOfWork uow, GoogleService googleService) : base(uow)
+        {
+            _googleService = googleService;
+        }
 
         public ClaimsIdentity FindUser(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            UnitOfWork IdentityContext = new UnitOfWork();
 
             try
             {
+                _googleService.GetUserInfo(context.Password);
                 //string username = context.UserName;
                 //string password = context.Password;
 
@@ -42,7 +46,6 @@ namespace FolhaDePonto.Business
             }
             finally
             {
-                IdentityContext.Dispose();
             }
         }
     }
