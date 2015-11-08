@@ -12,4 +12,3 @@
         function activate() { }
     }
 })();
-//# sourceMappingURL=home.controller.js.map

@@ -42,4 +42,3 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('authenticationService', FolhaDePonto.Services.AuthenticationService);
 })();
-//# sourceMappingURL=authentication.service.js.map

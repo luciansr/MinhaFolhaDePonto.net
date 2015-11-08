@@ -48,12 +48,13 @@ var GoogleAuth: any;
 
                     gapi.signin2.render("google-sign-in-button", {
                         'client_id': $scope.appId + '.apps.googleusercontent.com',
-                        //'scope': 'email',
-                        'width': 200,
-                        'height': 50,
-                        'longtitle': true,
+                        'scope': 'email',
+                        'width': 191,
+                        'height': 46,
+                        'longtitle': false,
                         'theme': 'dark',
                         'onsuccess': function (user) {
+                            console.log(user);
                         },
                         'onfailure': function () {
 
