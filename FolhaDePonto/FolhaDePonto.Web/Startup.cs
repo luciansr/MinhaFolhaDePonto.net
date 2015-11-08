@@ -29,7 +29,7 @@ namespace FolhaDePonto.Web
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/GetToken"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromHours(24),
-                Provider = (new AuthenticationProvider(Factory.Instance.Get<AuthService>()))
+                Provider = Factory.Instance.Get<AuthenticationProvider>()
             };
 
             app.UseOAuthAuthorizationServer(OAuthServerOptions);

@@ -2,7 +2,7 @@
     export module Base {
         export class Service {
 
-            private $http: ng.IHttpService;
+            protected $http: ng.IHttpService;
             protected $q: ng.IQService;
 
             private baseServiceUrl;

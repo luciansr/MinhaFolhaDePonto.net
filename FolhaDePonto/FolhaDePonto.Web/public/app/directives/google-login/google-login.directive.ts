@@ -21,9 +21,9 @@ var GoogleAuth: any;
             controllerAs: 'googleLoginCtrl'
         };
 
-        controller.$inject = ['$scope'];
+        controller.$inject = ['$scope', 'authenticationService'];
 
-        function controller($scope) {
+        function controller($scope, authenticationService: FolhaDePonto.Services.AuthenticationService) {
             var self = this;
            
             //GoogleAuth.then(activate, onFailure)
@@ -45,6 +45,9 @@ var GoogleAuth: any;
                     console.log('Name: ' + profile.getName());
                     console.log('Image URL: ' + profile.getImageUrl());
                     console.log('Email: ' + profile.getEmail());
+                    var id_token = googleUser.getAuthResponse().id_token;
+                    //console.log('Token: ' + id_token);
+                    authenticationService.googleLogin(id_token);
                 }
 
                 gapi.load('auth2', function () {

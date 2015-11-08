@@ -18,7 +18,7 @@
                 this.$window = $window;
 
                 if ($window.localStorage["userInfo"]) {
-                    this.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+                    this.userInfo = JSON.parse($window.localStorage["userInfo"]);
                 }
             }
 
@@ -37,6 +37,37 @@
                 auth2.signOut().then(function () {
                     console.log('User signed out.');
                     deferred.resolve(true);
+                });
+
+                return deferred.promise;
+            }
+
+            public googleLogin(token) {
+                var self = this;
+                var deferred = self.$q.defer();
+
+                var objData = "grant_type=password&username=&password=" + token;
+
+                self.$http.post('/GetToken',
+                    objData,
+                    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+                ).success(function (data: any) {
+                    if (data.access_token !== undefined && data.access_token != null) {
+
+                        self.userInfo = {
+                            accessToken: data.access_token,
+                            Nome: data.Nome,
+                            Role: data.Role,
+                            ID: data.ID
+                        };
+
+                        self.$window.sessionStorage["userInfo"] = JSON.stringify(self.userInfo);
+                        deferred.resolve(true);
+                    } else {
+                        deferred.resolve(false);
+                    }
+                }).error(function (err, status) {
+                    deferred.reject(err);
                 });
 
                 return deferred.promise;

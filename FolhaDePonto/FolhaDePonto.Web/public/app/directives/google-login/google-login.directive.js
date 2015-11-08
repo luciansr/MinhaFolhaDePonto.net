@@ -16,8 +16,8 @@ var GoogleAuth;
             controller: controller,
             controllerAs: 'googleLoginCtrl'
         };
-        controller.$inject = ['$scope'];
-        function controller($scope) {
+        controller.$inject = ['$scope', 'authenticationService'];
+        function controller($scope, authenticationService) {
             var self = this;
             //GoogleAuth.then(activate, onFailure)
             self.teste = function () { alert('teste'); };
@@ -33,6 +33,9 @@ var GoogleAuth;
                     console.log('Name: ' + profile.getName());
                     console.log('Image URL: ' + profile.getImageUrl());
                     console.log('Email: ' + profile.getEmail());
+                    var id_token = googleUser.getAuthResponse().id_token;
+                    //console.log('Token: ' + id_token);
+                    authenticationService.googleLogin(id_token);
                 }
                 gapi.load('auth2', function () {
                     // Retrieve the singleton for the GoogleAuth library and set up the client.
