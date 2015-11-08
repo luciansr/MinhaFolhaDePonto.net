@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoogleService.cs" />
     <Compile Include="AuthService.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

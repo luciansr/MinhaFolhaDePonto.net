@@ -27,6 +27,13 @@ var GoogleAuth;
                     setTimeout(activate, 100);
                     return;
                 }
+                function onSuccess(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail());
+                }
                 gapi.load('auth2', function () {
                     // Retrieve the singleton for the GoogleAuth library and set up the client.
                     gapi.auth2.init({
@@ -40,9 +47,7 @@ var GoogleAuth;
                         'height': 46,
                         'longtitle': false,
                         'theme': 'dark',
-                        'onsuccess': function (user) {
-                            console.log(user);
-                        },
+                        'onsuccess': onSuccess,
                         'onfailure': function () {
                         }
                     });
@@ -52,3 +57,4 @@ var GoogleAuth;
         return directive;
     }
 })();
+//# sourceMappingURL=google-login.directive.js.map

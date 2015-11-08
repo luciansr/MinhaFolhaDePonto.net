@@ -64,3 +64,4 @@
         return directive;
     }
 })();
+//# sourceMappingURL=folha-header.directive.js.map
