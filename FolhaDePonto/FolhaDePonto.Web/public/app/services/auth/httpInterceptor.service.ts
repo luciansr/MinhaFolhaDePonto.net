@@ -21,6 +21,8 @@
                 this.toastrService = toastrService;
                 this.ngProgressService = ngProgressService;
                 this.numChamadas = 0;
+                this.$window = $window;
+                this.$location = $location;
 
                 this.request = (config) => {
                     var self = this;

@@ -161,6 +161,7 @@
     <Content Include="public\app\components\home\home.html" />
     <Content Include="public\app\directives\folha-header\folha-header.template.html" />
     <Content Include="public\app\directives\folha-table\folha-table.template.html" />
+    <Content Include="public\app\directives\google-login\google-login.template.html" />
     <Content Include="public\css\folha-de-ponto.css" />
     <Content Include="public\css\sticky-footer.css" />
     <Content Include="public\libs\angular-animate\angular-animate.js" />
@@ -232,6 +233,7 @@
     <TypeScriptCompile Include="public\app\components\home\home.controller.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-header\folha-header.directive.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-table\folha-table.directive.ts" />
+    <TypeScriptCompile Include="public\app\directives\google-login\google-login.directive.ts" />
     <TypeScriptCompile Include="public\app\services\auth\authentication.service.ts" />
     <TypeScriptCompile Include="public\app\services\auth\httpInterceptor.service.ts" />
     <TypeScriptCompile Include="public\app\services\base\base.service.ts" />

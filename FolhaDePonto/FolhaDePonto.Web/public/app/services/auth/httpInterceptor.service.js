@@ -9,6 +9,8 @@ var FolhaDePonto;
                 this.toastrService = toastrService;
                 this.ngProgressService = ngProgressService;
                 this.numChamadas = 0;
+                this.$window = $window;
+                this.$location = $location;
                 this.request = function (config) {
                     var self = _this;
                     //self.toastrService.Info('Início');
