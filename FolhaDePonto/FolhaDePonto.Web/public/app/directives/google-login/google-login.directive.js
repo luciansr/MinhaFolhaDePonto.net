@@ -1,5 +1,6 @@
 var gapi;
 var GoogleAuth;
+var googleApiId;
 (function () {
     'use strict';
     angular
@@ -9,9 +10,6 @@ var GoogleAuth;
     function directive() {
         var directive = {
             restrict: 'EA',
-            scope: {
-                appId: '@'
-            },
             templateUrl: 'public/app/directives/google-login/google-login.template.html',
             controller: controller,
             controllerAs: 'googleLoginCtrl'
@@ -40,11 +38,11 @@ var GoogleAuth;
                 gapi.load('auth2', function () {
                     // Retrieve the singleton for the GoogleAuth library and set up the client.
                     gapi.auth2.init({
-                        client_id: $scope.appId + '.apps.googleusercontent.com'
+                        client_id: googleApiId + '.apps.googleusercontent.com'
                     });
                     //attachSignin(document.getElementById('customBtn'));
                     gapi.signin2.render("google-sign-in-button", {
-                        'client_id': $scope.appId + '.apps.googleusercontent.com',
+                        'client_id': googleApiId + '.apps.googleusercontent.com',
                         'scope': 'email',
                         'width': 191,
                         'height': 46,
