@@ -9,7 +9,8 @@ namespace FolhaDePonto.Repository.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(FolhaDePonto.Repository.Base.AppContext context)

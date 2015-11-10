@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBModels\Dia.cs" />
     <Compile Include="DBModels\Usuario.cs" />
     <Compile Include="Models\GoogleUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

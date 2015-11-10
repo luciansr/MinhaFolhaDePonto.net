@@ -20,13 +20,15 @@ namespace FolhaDePonto.Repository.Base
             base.SaveChanges();
         }
 
-        //public DbSet<TFolhaDePontoSOL0> Solicitacoes { get; set; }
-        //public DbSet<TFolhaDePontoDIC0> Discos { get; set; }
-        //public DbSet<TFolhaDePontoDOC0> Documentos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Dia> Dias { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<TFolhaDePontoCLA0>().HasRequired(c => c.TFolhaDePontoMAT0).WithMany(m => m.TFolhaDePontoCLA0).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Dia>()
+                .HasRequired(d => d.usuario)
+                .WithMany(u => u.Dias)
+                .WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
         }

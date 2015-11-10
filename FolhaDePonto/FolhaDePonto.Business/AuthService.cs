@@ -1,4 +1,5 @@
 ﻿using FolhaDePonto.Business.Base;
+using FolhaDePonto.Domain.DBModels;
 using FolhaDePonto.Domain.Models;
 using FolhaDePonto.Repository.Base;
 using Microsoft.Owin.Security.OAuth;
@@ -50,6 +51,14 @@ namespace FolhaDePonto.Business
         }
 
         //public 
-    }
+        private Usuario CreateUser(GoogleUserInfo googleUser)
+        {
 
+            return null;
+        }
+
+        private Usuario GetUserByEmail(string email) {
+            return _uow.Usuarios.Get(u => u.Email == email).FirstOrDefault();
+        }
+    }
 }

@@ -34,15 +34,24 @@ namespace FolhaDePonto.Repository.Base
             GC.SuppressFinalize(this);
         }
 
-        //private GenericRepository<TFolhaDePontoSOL0> _solicitacoes;
+        private GenericRepository<Usuario> _usuarios;
 
-        //public IRepository<TFolhaDePontoSOL0> Solicitacoes
-        //{
-        //    get
-        //    {
-        //        return _solicitacoes ?? (_solicitacoes = new GenericRepository<TFolhaDePontoSOL0>(context));
-        //    }
-        //}
-        
+        public IRepository<Usuario> Usuarios
+        {
+            get
+            {
+                return _usuarios ?? (_usuarios = new GenericRepository<Usuario>(context));
+            }
+        }
+
+        private GenericRepository<Dia> _dias;
+
+        public IRepository<Dia> Dias
+        {
+            get
+            {
+                return _dias ?? (_dias = new GenericRepository<Dia>(context));
+            }
+        }
     }
 }
