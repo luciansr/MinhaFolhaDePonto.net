@@ -26,39 +26,63 @@ namespace FolhaDePonto.Business
 
             if (googleUser != null)
             {
+                Usuario usuario = GetUserOrCreate(googleUser);
 
+                if (usuario != null)
+                {
+                    ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
+
+                    identity.AddClaim(new Claim("Nome", usuario.Nome));
+                    identity.AddClaim(new Claim("ID", usuario.Id.ToString()));
+                    identity.AddClaim(new Claim("Role", "User"));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
+
+                    return identity;
+                }
 
             }
-            //string username = context.UserName;
-            //string password = context.Password;
 
-            //Usuario usuario = IdentityContext.Usuarios.Get(u => u.UserID.ToLower() == username.ToLower() && u.Senha == password && !u.Bloqueado).FirstOrDefault();
-
-            //if (usuario != null)
-            //{
-            //    ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
-
-            //    identity.AddClaim(new Claim("Nome", usuario.Nome));
-            //    identity.AddClaim(new Claim("ID", usuario.ID.ToString()));
-            //    identity.AddClaim(new Claim("Role", usuario.Roles.ToString()));
-            //    identity.AddClaim(new Claim(ClaimTypes.Role, usuario.Roles.ToString()));
-
-            //    return identity;
-            //}
-
-            //return null;
             return null;
         }
 
-        //public 
+        private Usuario GetUser(string email)
+        {
+            return _uow.Usuarios.Get(u => u.Email == email).FirstOrDefault();
+        }
+
         private Usuario CreateUser(GoogleUserInfo googleUser)
         {
+            Usuario usuario = GetUser(googleUser.email);
 
-            return null;
+            if (usuario == null) {
+                usuario = new Usuario
+                {
+                    Email = googleUser.email,
+                    Nome = googleUser.name,
+                    PrimeiroNome = googleUser.given_name,
+                    Sobrenome = googleUser.family_name,
+                    UrlImagem = googleUser.picture
+                };
+
+                _uow.Usuarios.Insert(usuario);
+                _uow.Save();
+
+                usuario = _uow.Usuarios.Get(u => u.Email == googleUser.email).FirstOrDefault();
+            }
+
+            return usuario;
         }
 
-        private Usuario GetUserByEmail(string email) {
-            return _uow.Usuarios.Get(u => u.Email == email).FirstOrDefault();
+        private Usuario GetUserOrCreate(GoogleUserInfo googleUser)
+        {
+            Usuario usuario = GetUser(googleUser.email);
+
+            if (usuario == null)
+            {
+                usuario = CreateUser(googleUser);
+            }
+
+            return usuario;
         }
     }
 }
