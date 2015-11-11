@@ -11,15 +11,29 @@
 
             private userInfo: IUserInfo;
             private $window: ng.IWindowService;
-            public static $inject = ['$http', '$q', '$window'];
+            private $rootScope: any;
+            public static $inject = ['$http', '$q', '$window', '$rootScope'];
 
-            public constructor($http, $q, $window) {
+            public constructor($http, $q, $window, $rootScope) {
                 super($http, $q, 'Authentication');
                 this.$window = $window;
+                this.$rootScope = $rootScope;
+
+                this.$rootScope.Usuario = {};
 
                 if ($window.localStorage["userInfo"]) {
+                    //this.setUserInfo($window.localStorage["userInfo"]);
                     this.userInfo = JSON.parse($window.localStorage["userInfo"]);
+                    this.$rootScope.Usuario = this.userInfo;
                 }
+            }
+
+            private setUserInfo(user: IUserInfo) {
+                this.userInfo = user;
+            }
+
+            public getUserInfo(): IUserInfo {
+                return this.userInfo;
             }
 
             public GetCurrentUsername() {
@@ -32,6 +46,7 @@
 
                 self.$window.localStorage["userInfo"] = null;
                 self.userInfo = null;
+                self.$rootScope.Usuario = null;
 
                 var auth2 = gapi.auth2.getAuthInstance();
                 auth2.signOut().then(function () {
@@ -61,7 +76,9 @@
                             ID: data.ID
                         };
 
-                        self.$window.sessionStorage["userInfo"] = JSON.stringify(self.userInfo);
+                        self.$window.localStorage["userInfo"] = JSON.stringify(self.userInfo);
+
+                        self.$rootScope.Usuario = self.userInfo;
                         deferred.resolve(true);
                     } else {
                         deferred.resolve(false);
@@ -73,9 +90,7 @@
                 return deferred.promise;
             }
 
-            public getUserInfo(): IUserInfo {
-                return this.userInfo;
-            }
+
         }
     }
 }

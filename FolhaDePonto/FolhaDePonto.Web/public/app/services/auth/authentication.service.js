@@ -9,13 +9,23 @@ var FolhaDePonto;
     (function (Services) {
         var AuthenticationService = (function (_super) {
             __extends(AuthenticationService, _super);
-            function AuthenticationService($http, $q, $window) {
+            function AuthenticationService($http, $q, $window, $rootScope) {
                 _super.call(this, $http, $q, 'Authentication');
                 this.$window = $window;
+                this.$rootScope = $rootScope;
+                this.$rootScope.Usuario = {};
                 if ($window.localStorage["userInfo"]) {
+                    //this.setUserInfo($window.localStorage["userInfo"]);
                     this.userInfo = JSON.parse($window.localStorage["userInfo"]);
+                    this.$rootScope.Usuario = this.userInfo;
                 }
             }
+            AuthenticationService.prototype.setUserInfo = function (user) {
+                this.userInfo = user;
+            };
+            AuthenticationService.prototype.getUserInfo = function () {
+                return this.userInfo;
+            };
             AuthenticationService.prototype.GetCurrentUsername = function () {
                 return _super.prototype.Get.call(this, 'GetCurrentUsername');
             };
@@ -24,6 +34,7 @@ var FolhaDePonto;
                 var deferred = self.$q.defer();
                 self.$window.localStorage["userInfo"] = null;
                 self.userInfo = null;
+                self.$rootScope.Usuario = null;
                 var auth2 = gapi.auth2.getAuthInstance();
                 auth2.signOut().then(function () {
                     console.log('User signed out.');
@@ -43,7 +54,8 @@ var FolhaDePonto;
                             Role: data.Role,
                             ID: data.ID
                         };
-                        self.$window.sessionStorage["userInfo"] = JSON.stringify(self.userInfo);
+                        self.$window.localStorage["userInfo"] = JSON.stringify(self.userInfo);
+                        self.$rootScope.Usuario = self.userInfo;
                         deferred.resolve(true);
                     }
                     else {
@@ -54,10 +66,7 @@ var FolhaDePonto;
                 });
                 return deferred.promise;
             };
-            AuthenticationService.prototype.getUserInfo = function () {
-                return this.userInfo;
-            };
-            AuthenticationService.$inject = ['$http', '$q', '$window'];
+            AuthenticationService.$inject = ['$http', '$q', '$window', '$rootScope'];
             return AuthenticationService;
         })(FolhaDePonto.Base.Service);
         Services.AuthenticationService = AuthenticationService;

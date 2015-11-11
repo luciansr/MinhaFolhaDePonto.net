@@ -32,7 +32,7 @@ namespace FolhaDePonto.Business
                 {
                     ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                    identity.AddClaim(new Claim("Nome", usuario.Nome));
+                    identity.AddClaim(new Claim("Nome", usuario.PrimeiroNome));
                     identity.AddClaim(new Claim("ID", usuario.Id.ToString()));
                     identity.AddClaim(new Claim("Role", "User"));
                     identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
