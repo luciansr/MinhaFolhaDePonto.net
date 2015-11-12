@@ -36,7 +36,6 @@ var googleApiId: any;
                     return;
                 }
 
-
                 function onSuccess(googleUser) {
                     var profile = googleUser.getBasicProfile();
                     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -50,10 +49,12 @@ var googleApiId: any;
 
                 gapi.load('auth2', function () {
                     // Retrieve the singleton for the GoogleAuth library and set up the client.
-                    gapi.auth2.init({
-                        client_id: googleApiId + '.apps.googleusercontent.com'
-                        // Additional optional params
-                    });
+                    //gapi.auth2.GoogleAuth
+
+                    //gapi.auth2.init({
+                    //    client_id: googleApiId + '.apps.googleusercontent.com'
+                    //    // Additional optional params
+                    //});
                     //attachSignin(document.getElementById('customBtn'));
 
                     gapi.signin2.render("google-sign-in-button", {

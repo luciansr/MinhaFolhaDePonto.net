@@ -42,4 +42,3 @@ var FolhaDePonto;
         Base.Service = Service;
     })(Base = FolhaDePonto.Base || (FolhaDePonto.Base = {}));
 })(FolhaDePonto || (FolhaDePonto = {}));
-//# sourceMappingURL=base.service.js.map

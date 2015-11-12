@@ -162,6 +162,7 @@
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="google-id.js" />
     <Content Include="index.html" />
+    <Content Include="public\app\components\login\login.html" />
     <Content Include="public\app\components\home\home.html" />
     <Content Include="public\app\directives\folha-header\folha-header.template.html" />
     <Content Include="public\app\directives\folha-table\folha-table.template.html" />
@@ -234,6 +235,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="public\app\app.config.ts" />
     <TypeScriptCompile Include="public\app\app.ts" />
+    <TypeScriptCompile Include="public\app\components\login\login.controller.ts" />
     <TypeScriptCompile Include="public\app\components\home\home.controller.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-header\folha-header.directive.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-table\folha-table.directive.ts" />

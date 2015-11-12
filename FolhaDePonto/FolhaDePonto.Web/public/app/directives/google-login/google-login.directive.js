@@ -37,9 +37,11 @@ var googleApiId;
                 }
                 gapi.load('auth2', function () {
                     // Retrieve the singleton for the GoogleAuth library and set up the client.
-                    gapi.auth2.init({
-                        client_id: googleApiId + '.apps.googleusercontent.com'
-                    });
+                    //gapi.auth2.GoogleAuth
+                    //gapi.auth2.init({
+                    //    client_id: googleApiId + '.apps.googleusercontent.com'
+                    //    // Additional optional params
+                    //});
                     //attachSignin(document.getElementById('customBtn'));
                     gapi.signin2.render("google-sign-in-button", {
                         'client_id': googleApiId + '.apps.googleusercontent.com',
@@ -58,4 +60,3 @@ var googleApiId;
         return directive;
     }
 })();
-//# sourceMappingURL=google-login.directive.js.map

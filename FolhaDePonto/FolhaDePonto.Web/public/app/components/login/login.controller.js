@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('folhaDePonto')
-        .controller('homeController', controller);
+        .controller('loginController', controller);
     controller.$inject = ['$scope'];
     function controller($scope) {
         /* jshint validthis:true */

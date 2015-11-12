@@ -28,8 +28,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="javascript:void(0)">Olá, {{Usuario.Nome}}</a></li>
-                <li><a href="javascript:void(0)" ng-click="folhaHeaderCtrl.logout()">Sair</a></li>
+                <li><a href="javascript:void(0)" ng-if="Usuario">Olá, {{Usuario.Nome}}</a></li>
+                <li><a href="javascript:void(0)" ng-if="Usuario" ng-click="folhaHeaderCtrl.logout()">Sair</a></li>
             </ul>
         </div>
     </div>

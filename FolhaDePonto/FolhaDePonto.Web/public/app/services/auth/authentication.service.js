@@ -7,19 +7,29 @@ var FolhaDePonto;
 (function (FolhaDePonto) {
     var Services;
     (function (Services) {
+        /**
+        authenticationService
+        */
         var AuthenticationService = (function (_super) {
             __extends(AuthenticationService, _super);
-            function AuthenticationService($http, $q, $window, $rootScope) {
+            function AuthenticationService($http, $q, $window, $rootScope, $location) {
                 _super.call(this, $http, $q, 'Authentication');
                 this.$window = $window;
                 this.$rootScope = $rootScope;
-                this.$rootScope.Usuario = {};
-                if ($window.localStorage["userInfo"]) {
-                    //this.setUserInfo($window.localStorage["userInfo"]);
-                    this.userInfo = JSON.parse($window.localStorage["userInfo"]);
-                    this.$rootScope.Usuario = this.userInfo;
-                }
+                this.$location = $location;
+                this.$window.localStorage["userInfo"] = null;
+                //this.$rootScope.Usuario = {};
+                //if ($window.localStorage["userInfo"]) {
+                //    //this.setUserInfo($window.localStorage["userInfo"]);
+                //    this.userInfo = JSON.parse($window.localStorage["userInfo"]);
+                //    this.$rootScope.Usuario = this.userInfo;
+                //}
             }
+            AuthenticationService.prototype.UserHasAccess = function (allowedRoles) {
+                if (this.getUserInfo() != null)
+                    return true;
+                return false;
+            };
             AuthenticationService.prototype.setUserInfo = function (user) {
                 this.userInfo = user;
             };
@@ -39,6 +49,9 @@ var FolhaDePonto;
                 auth2.signOut().then(function () {
                     console.log('User signed out.');
                     deferred.resolve(true);
+                    self.$rootScope.$evalAsync(function () {
+                        self.$location.path('/Login');
+                    });
                 });
                 return deferred.promise;
             };
@@ -57,6 +70,7 @@ var FolhaDePonto;
                         self.$window.localStorage["userInfo"] = JSON.stringify(self.userInfo);
                         self.$rootScope.Usuario = self.userInfo;
                         deferred.resolve(true);
+                        self.$location.path('/Home');
                     }
                     else {
                         deferred.resolve(false);
@@ -66,7 +80,7 @@ var FolhaDePonto;
                 });
                 return deferred.promise;
             };
-            AuthenticationService.$inject = ['$http', '$q', '$window', '$rootScope'];
+            AuthenticationService.$inject = ['$http', '$q', '$window', '$rootScope', '$location'];
             return AuthenticationService;
         })(FolhaDePonto.Base.Service);
         Services.AuthenticationService = AuthenticationService;
@@ -78,4 +92,3 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('authenticationService', FolhaDePonto.Services.AuthenticationService);
 })();
-//# sourceMappingURL=authentication.service.js.map

@@ -14,14 +14,14 @@
     resolveAuthenticationConfig.$inject = ['$rootScope', '$window', '$location', 'toastrService'];
 
     function routeConfig($routeProvider) {
-        var resolveAuthentication = (allowedRoles) => {
+        var resolveAuthentication = (allowedRoles: Array<string>) => {
 
             var authObj = {
-                auth: ["$q", "AccountService", function ($q, AccountService) {
-                    var userInfo = AccountService.getUserInfo();
+                auth: ["$q", "authenticationService", function ($q, authenticationService: FolhaDePonto.Services.AuthenticationService) {
+                    var userInfo = authenticationService.getUserInfo();
 
                     if (userInfo) {
-                        if (AccountService.UserHasAccess(allowedRoles)) {
+                        if (authenticationService.UserHasAccess(allowedRoles)) {
                             return $q.when(userInfo);
                         } else {
                             return $q.reject({ authenticated: true, allowedAccess: false });
@@ -39,11 +39,19 @@
 
         $routeProvider
             .when('/', {
+                redirectTo: 'Login'
+            })
+            .when('/Login', {
+                templateUrl: 'public/app/components/login/login.html',
+                controller: 'loginController as loginCtrl'
+            })
+            .when('/Home', {
                 templateUrl: 'public/app/components/home/home.html',
-                controller: 'homeController as homeCtrl'
+                controller: 'homeController as homeCtrl',
+                resolve: resolveAuthentication([])
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/Home'
             });
     }
 
@@ -74,7 +82,7 @@
 
         $rootScope.$on("$routeChangeError", function (event, current, previous, eventObj) {
             if (eventObj.authenticated === false) {
-                toastrService.Warning('É necessário fazer login para ter acesso a esta função.');
+                //toastrService.Info('Faça login e comece a usar sua foçl');
                 $location.path('/Login');
             } else if (eventObj.allowedAccess === false) {
                 //console.log('Not allowed access - current: ' + current.$$route.originalPath, ', previous: ' + previous !== undefined && previous !== null ? previous.$$route.originalPath : '' + '.'); 
