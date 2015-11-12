@@ -24,3 +24,4 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('documentService', FolhaDePonto.Services.DocumentService);
 })();
+//# sourceMappingURL=document.service.js.map
