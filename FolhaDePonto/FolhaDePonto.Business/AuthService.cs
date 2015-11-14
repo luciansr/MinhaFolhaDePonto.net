@@ -32,10 +32,15 @@ namespace FolhaDePonto.Business
                 {
                     ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                    identity.AddClaim(new Claim("Nome", usuario.PrimeiroNome));
+                    identity.AddClaim(new Claim("Nome", usuario.Nome));
                     identity.AddClaim(new Claim("ID", usuario.Id.ToString()));
                     identity.AddClaim(new Claim("Role", "User"));
                     identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
+
+                    identity.AddClaim(new Claim("Fullname", usuario.NomeCompleto));
+                    identity.AddClaim(new Claim("Lastname", usuario.Sobrenome));
+                    identity.AddClaim(new Claim("Email", usuario.Email));
+                    identity.AddClaim(new Claim("ImageUrl", usuario.UrlImagem));
 
                     return identity;
                 }
@@ -58,8 +63,8 @@ namespace FolhaDePonto.Business
                 usuario = new Usuario
                 {
                     Email = googleUser.email,
-                    Nome = googleUser.name,
-                    PrimeiroNome = googleUser.given_name,
+                    NomeCompleto = googleUser.name,
+                    Nome = googleUser.given_name,
                     Sobrenome = googleUser.family_name,
                     UrlImagem = googleUser.picture
                 };
