@@ -43,13 +43,13 @@
             controller: 'todayController as todayCtrl',
             resolve: resolveAuthentication([])
         })
-            .when('/Home', {
-            templateUrl: 'public/app/components/home/home.html',
-            controller: 'homeController as homeCtrl',
+            .when('/Month', {
+            templateUrl: 'public/app/components/month/month.html',
+            controller: 'monthController as monthCtrl',
             resolve: resolveAuthentication([])
         })
             .otherwise({
-            redirectTo: '/Home'
+            redirectTo: '/Today'
         });
     }
     function httpIntercept($httpProvider) {

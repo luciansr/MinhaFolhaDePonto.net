@@ -28,22 +28,12 @@
 
             self.menu = [
                 {
-                    title: 'Início',
-                    childNodes: [
-                        {
-                            title: 'Home',
-                            href: '#/'
-                        }
-                    ]
+                    title: 'Hoje',
+                    href: '#/Today'
                 },
                 {
-                    title: 'Início 2',
-                    childNodes: [
-                        {
-                            title: 'Home 2',
-                            href: '#/2'
-                        }
-                    ]
+                    title: 'Mês atual',
+                    href: '#/Month'
                 }
             ];
 

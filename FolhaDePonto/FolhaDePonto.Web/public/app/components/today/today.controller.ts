@@ -3,14 +3,14 @@
 
     angular
         .module('folhaDePonto')
-        .controller('hojeController', controller);
+        .controller('todayController', controller);
 
     controller.$inject = ['$scope']; 
 
     function controller($scope) {
         /* jshint validthis:true */
         var vm = this;
-        vm.title = 'hoje';
+        vm.today = new Date();
 
         activate();
 

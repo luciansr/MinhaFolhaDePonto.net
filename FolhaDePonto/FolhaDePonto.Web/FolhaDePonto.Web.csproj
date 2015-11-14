@@ -162,9 +162,9 @@
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="google-id.js" />
     <Content Include="index.html" />
+    <Content Include="public\app\components\month\month.html" />
     <Content Include="public\app\components\today\today.html" />
     <Content Include="public\app\components\login\login.html" />
-    <Content Include="public\app\components\home\home.html" />
     <Content Include="public\app\directives\folha-header\folha-header.template.html" />
     <Content Include="public\app\directives\folha-table\folha-table.template.html" />
     <Content Include="public\app\directives\google-login\google-login.template.html" />
@@ -178,6 +178,7 @@
     <Content Include="public\libs\angular-sanitize\angular-sanitize.js" />
     <Content Include="public\libs\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="public\libs\angular-ui-bootstrap\ui-bootstrap-tpls-0.13.4.min.js" />
+    <Content Include="public\libs\angularjs\angular-locale_pt-br.js" />
     <Content Include="public\libs\angularjs\angular-messages.min.js" />
     <Content Include="public\libs\angularjs\angular-route.min.js" />
     <Content Include="public\libs\angularjs\angular.min.js" />
@@ -234,11 +235,12 @@
     <Folder Include="public\js\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="public\app\app.filters.ts" />
     <TypeScriptCompile Include="public\app\app.config.ts" />
     <TypeScriptCompile Include="public\app\app.ts" />
+    <TypeScriptCompile Include="public\app\components\month\month.controller.ts" />
     <TypeScriptCompile Include="public\app\components\today\today.controller.ts" />
     <TypeScriptCompile Include="public\app\components\login\login.controller.ts" />
-    <TypeScriptCompile Include="public\app\components\home\home.controller.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-header\folha-header.directive.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-table\folha-table.directive.ts" />
     <TypeScriptCompile Include="public\app\directives\google-login\google-login.directive.ts" />

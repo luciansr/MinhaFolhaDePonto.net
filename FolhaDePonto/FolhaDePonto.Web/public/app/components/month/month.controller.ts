@@ -1,15 +1,19 @@
-(function () {
+﻿(function () {
     'use strict';
+
     angular
         .module('folhaDePonto')
-        .controller('homeController', controller);
-    controller.$inject = ['$scope'];
+        .controller('monthController', controller);
+
+    controller.$inject = ['$scope']; 
+
     function controller($scope) {
         /* jshint validthis:true */
         var vm = this;
-        vm.title = 'home';
+        vm.today = new Date();
+
         activate();
+
         function activate() { }
     }
 })();
-//# sourceMappingURL=home.controller.js.map

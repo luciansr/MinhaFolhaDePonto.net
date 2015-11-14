@@ -15,6 +15,7 @@ namespace FolhaDePonto.Domain.Models
         public TimeSpan FimAlmoco { get; set; }
         public TimeSpan FimExpediente { get; set; }
 
-        
+        public int DiasAindaSemInformacao { get; set; }
+        public TimeSpan SaldoDeHorasDoMes { get; set; }
     }
 }
