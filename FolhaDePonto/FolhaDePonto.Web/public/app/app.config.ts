@@ -39,11 +39,16 @@
 
         $routeProvider
             .when('/', {
-                redirectTo: 'Login'
+                redirectTo: 'Today'
             })
             .when('/Login', {
                 templateUrl: 'public/app/components/login/login.html',
                 controller: 'loginController as loginCtrl'
+            })
+            .when('/Today', {
+                templateUrl: 'public/app/components/today/today.html',
+                controller: 'todayController as todayCtrl',
+                resolve: resolveAuthentication([])
             })
             .when('/Home', {
                 templateUrl: 'public/app/components/home/home.html',

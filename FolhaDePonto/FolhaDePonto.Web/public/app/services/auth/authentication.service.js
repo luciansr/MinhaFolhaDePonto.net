@@ -70,7 +70,7 @@ var FolhaDePonto;
                         self.$window.localStorage["userInfo"] = JSON.stringify(self.userInfo);
                         self.$rootScope.Usuario = self.userInfo;
                         deferred.resolve(true);
-                        self.$location.path('/Home');
+                        self.$location.path('/');
                     }
                     else {
                         deferred.resolve(false);

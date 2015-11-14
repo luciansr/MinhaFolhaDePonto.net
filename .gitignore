@@ -13,3 +13,5 @@
 /FolhaDePonto/FolhaDePonto.Web/bin
 /FolhaDePonto/FolhaDePonto.Web/obj/Debug
 /FolhaDePonto/packages
+/FolhaDePonto/FolhaDePonto.Web/App_Data/AppDB_log.ldf
+/FolhaDePonto/FolhaDePonto.Web/App_Data/AppDB.mdf
