@@ -18,6 +18,7 @@ namespace FolhaDePonto.Web.Controllers
             _dayService = dayService;
         }
 
+        [HttpGet]
         public IHttpActionResult GetDayInfo(DateTime day)
         {
             try

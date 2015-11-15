@@ -18,6 +18,7 @@
             self.isActive = isActive;
             self.hasChildNodes = hasChildNodes;
             self.logout = logout;
+            var hoje = new Date();
             self.menu = [
                 {
                     title: 'Hoje',
@@ -25,7 +26,7 @@
                 },
                 {
                     title: 'Mês atual',
-                    href: '#/Month'
+                    href: '#/Month/' + hoje.getFullYear() + '/' + hoje.getMonth()
                 }
             ];
             function isActive(item) {
@@ -54,4 +55,3 @@
         return directive;
     }
 })();
-//# sourceMappingURL=folha-header.directive.js.map

@@ -26,7 +26,7 @@ namespace FolhaDePonto.Repository.Base
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Dia>()
-                .HasRequired(d => d.usuario)
+                .HasRequired(d => d.Usuario)
                 .WithMany(u => u.Dias)
                 .WillCascadeOnDelete(true);
 

@@ -43,7 +43,7 @@
             controller: 'todayController as todayCtrl',
             resolve: resolveAuthentication([])
         })
-            .when('/Month', {
+            .when('/Month/:year/:month', {
             templateUrl: 'public/app/components/month/month.html',
             controller: 'monthController as monthCtrl',
             resolve: resolveAuthentication([])
@@ -81,4 +81,3 @@
         });
     }
 })();
-//# sourceMappingURL=app.config.js.map

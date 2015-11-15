@@ -12,4 +12,3 @@
         function activate() { }
     }
 })();
-//# sourceMappingURL=login.controller.js.map

@@ -26,6 +26,8 @@
 
             self.logout = logout;
 
+            var hoje = new Date();
+
             self.menu = [
                 {
                     title: 'Hoje',
@@ -33,7 +35,7 @@
                 },
                 {
                     title: 'Mês atual',
-                    href: '#/Month'
+                    href: '#/Month/' + hoje.getFullYear() + '/' + hoje.getMonth()
                 }
             ];
 

@@ -7,21 +7,23 @@ var FolhaDePonto;
 (function (FolhaDePonto) {
     var Services;
     (function (Services) {
-        var DocumentService = (function (_super) {
-            __extends(DocumentService, _super);
-            function DocumentService($http, $q) {
-                _super.call(this, $http, $q, 'Document');
+        var DayService = (function (_super) {
+            __extends(DayService, _super);
+            function DayService($http, $q) {
+                _super.call(this, $http, $q, 'Day');
             }
-            DocumentService.$inject = ['$http', '$q'];
-            return DocumentService;
+            DayService.prototype.GetDayInfo = function (day) {
+                return _super.prototype.Get.call(this, 'GetDayInfo', '?day=' + moment(day).format('YYYY-MM-DD'));
+            };
+            DayService.$inject = ['$http', '$q'];
+            return DayService;
         })(FolhaDePonto.Base.Service);
-        Services.DocumentService = DocumentService;
+        Services.DayService = DayService;
     })(Services = FolhaDePonto.Services || (FolhaDePonto.Services = {}));
 })(FolhaDePonto || (FolhaDePonto = {}));
 (function () {
     'use strict';
     angular
         .module('folhaDePonto')
-        .service('documentService', FolhaDePonto.Services.DocumentService);
+        .service('dayService', FolhaDePonto.Services.DayService);
 })();
-//# sourceMappingURL=document.service.js.map

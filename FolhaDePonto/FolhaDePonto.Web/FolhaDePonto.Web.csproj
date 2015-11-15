@@ -247,7 +247,7 @@
     <TypeScriptCompile Include="public\app\services\auth\authentication.service.ts" />
     <TypeScriptCompile Include="public\app\services\auth\httpInterceptor.service.ts" />
     <TypeScriptCompile Include="public\app\services\base\base.service.ts" />
-    <TypeScriptCompile Include="public\app\services\http\document.service.ts" />
+    <TypeScriptCompile Include="public\app\services\http\day.service.ts" />
     <TypeScriptCompile Include="public\app\services\http\validation.service.ts" />
     <TypeScriptCompile Include="public\app\services\util\ngProgress.service.ts" />
     <TypeScriptCompile Include="public\app\services\util\toastr.service.ts" />

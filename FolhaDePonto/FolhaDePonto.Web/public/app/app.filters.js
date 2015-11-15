@@ -8,4 +8,3 @@
         };
     }
 })();
-//# sourceMappingURL=app.filters.js.map

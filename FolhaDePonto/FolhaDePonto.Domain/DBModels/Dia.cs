@@ -11,12 +11,17 @@ namespace FolhaDePonto.Domain.DBModels
     public class Dia
     {
         public int Id { get; set; }
+
+        public int DiaDoMes { get; set; }
+        public int Mes { get; set; }
+        public int Ano { get; set; }
+
         public TipoDia Tipo { get; set; }
         public TimeSpan InicioExpediente { get; set; }
-        public TimeSpan InicioAlmoco { get; set; }
-        public TimeSpan FimAlmoco { get; set; }
-        public TimeSpan FimExpediente { get; set; }
+        public TimeSpan? InicioAlmoco { get; set; }
+        public TimeSpan? FimAlmoco { get; set; }
+        public TimeSpan? FimExpediente { get; set; }
         
-        public virtual Usuario usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
