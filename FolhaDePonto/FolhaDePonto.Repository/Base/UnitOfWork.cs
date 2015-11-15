@@ -1,4 +1,5 @@
 ﻿using FolhaDePonto.Domain.DBModels;
+using FolhaDePonto.Repository.Custom;
 using System;
 //using FolhaDePonto.Repository.Custom;
 
@@ -44,13 +45,13 @@ namespace FolhaDePonto.Repository.Base
             }
         }
 
-        private GenericRepository<Dia> _dias;
+        private DayRepository _dias;
 
-        public IRepository<Dia> Dias
+        public DayRepository Dias
         {
             get
             {
-                return _dias ?? (_dias = new GenericRepository<Dia>(context));
+                return _dias ?? (_dias = new DayRepository(context));
             }
         }
     }

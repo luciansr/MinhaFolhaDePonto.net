@@ -58,6 +58,7 @@
     <Compile Include="Base\IRepository.cs" />
     <Compile Include="Base\IUnitOfWork.cs" />
     <Compile Include="Base\UnitOfWork.cs" />
+    <Compile Include="Custom\DayRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,9 +72,7 @@
       <Name>FolhaDePonto.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Custom\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

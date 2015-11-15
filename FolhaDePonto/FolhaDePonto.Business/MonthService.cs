@@ -12,17 +12,15 @@ using System.Threading.Tasks;
 
 namespace FolhaDePonto.Business
 {
-    public class DayService : BaseService
+    public class MonthService : BaseService
     {
-        public DayService(IUnitOfWork uow) : base(uow)
+        public MonthService(IUnitOfWork uow) : base(uow)
         {
         }
 
-        public DayInfo GetDayInfo(DateTime day, int UserId)
+        public DayInfo GetMonthInfo(int Year, int Month, int UserId)
         {
-            IEnumerable<Dia> diasDoMes = _uow.Dias.GetDaysFromMonthAndUser(day.Year, day.Month, UserId);
-
-            Dia dia = diasDoMes.FirstOrDefault(d => d.DiaDoMes == day.Day);
+            IEnumerable<Dia> diasDoMes = _uow.Dias.GetDaysFromMonthAndUser(Year, Month, UserId);
 
             //if (dia == null) {
             //    return null;

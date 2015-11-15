@@ -10,11 +10,11 @@ using System.Web.Http;
 
 namespace FolhaDePonto.Web.Controllers
 {
-    public class DayController : BaseController
+    public class MonthController : BaseController
     {
         private DayService _dayService { get; set; }
 
-        public DayController(DayService dayService)
+        public MonthController(DayService dayService)
         {
             _dayService = dayService;
         }
