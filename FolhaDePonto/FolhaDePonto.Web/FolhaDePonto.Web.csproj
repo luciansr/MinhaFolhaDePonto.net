@@ -163,6 +163,7 @@
     <Content Include="google-id.js" />
     <Content Include="index.html" />
     <Content Include="public\app\components\month\month.html" />
+    <Content Include="public\app\components\dayEdit\dayEdit.html" />
     <Content Include="public\app\components\today\today.html" />
     <Content Include="public\app\components\login\login.html" />
     <Content Include="public\app\directives\folha-header\folha-header.template.html" />
@@ -194,7 +195,10 @@
     <Content Include="public\libs\bootstrap\js\bootstrap.min.js" />
     <Content Include="public\libs\bootstrap\js\npm.js" />
     <Content Include="public\libs\bootstrap\paper-bootstrap.min.css" />
+    <Content Include="public\libs\font-awesome\font-awesome.min.css" />
+    <Content Include="public\libs\fonts\fontawesome-webfont.svg" />
     <Content Include="public\libs\jquery\jquery-2.1.4.min.js" />
+    <Content Include="public\libs\moment\moment.min.js" />
     <Content Include="public\libs\normalize\normalize.css" />
     <Content Include="public\libs\NProgress\nprogress.css" />
     <Content Include="public\libs\NProgress\nprogress.js" />
@@ -224,6 +228,11 @@
     <Content Include="public\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="packages.config" />
+    <Content Include="public\libs\fonts\fontawesome-webfont.eot" />
+    <Content Include="public\libs\fonts\fontawesome-webfont.ttf" />
+    <Content Include="public\libs\fonts\fontawesome-webfont.woff" />
+    <Content Include="public\libs\fonts\fontawesome-webfont.woff2" />
+    <Content Include="public\libs\fonts\FontAwesome.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,6 +249,7 @@
     <TypeScriptCompile Include="public\app\app.config.ts" />
     <TypeScriptCompile Include="public\app\app.ts" />
     <TypeScriptCompile Include="public\app\components\month\month.controller.ts" />
+    <TypeScriptCompile Include="public\app\components\dayEdit\dayEdit.controller.ts" />
     <TypeScriptCompile Include="public\app\components\today\today.controller.ts" />
     <TypeScriptCompile Include="public\app\components\login\login.controller.ts" />
     <TypeScriptCompile Include="public\app\directives\folha-header\folha-header.directive.ts" />

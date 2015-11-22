@@ -15,6 +15,17 @@ var FolhaDePonto;
             DayService.prototype.GetDayInfo = function (day) {
                 return _super.prototype.Get.call(this, 'GetDayInfo', '?day=' + moment(day).format('YYYY-MM-DD'));
             };
+            DayService.prototype.GetDayInfoByYearMonthDay = function (Year, Month, Day) {
+                var date = this.GetDateFromYearMonthDay(Year, Month, Day);
+                return this.GetDayInfo(date);
+            };
+            DayService.prototype.GetDateFromYearMonthDay = function (Year, Month, Day) {
+                var date = new Date();
+                date.setMonth(Month - 1);
+                date.setDate(Day);
+                date.setFullYear(Year);
+                return date;
+            };
             DayService.$inject = ['$http', '$q'];
             return DayService;
         })(FolhaDePonto.Base.Service);

@@ -36,7 +36,7 @@
             return authObj;
         };
 
-
+        
         $routeProvider
             .when('/', {
                 redirectTo: 'Today'
@@ -53,6 +53,11 @@
             .when('/Month/:year/:month', {
                 templateUrl: 'public/app/components/month/month.html',
                 controller: 'monthController as monthCtrl',
+                resolve: resolveAuthentication([])
+            })
+            .when('/Day/:year/:month/:day', {
+                templateUrl: 'public/app/components/dayEdit/dayEdit.html',
+                controller: 'dayEditController as dayEditCtrl',
                 resolve: resolveAuthentication([])
             })
             .otherwise({

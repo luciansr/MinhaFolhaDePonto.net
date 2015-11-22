@@ -48,6 +48,11 @@
             controller: 'monthController as monthCtrl',
             resolve: resolveAuthentication([])
         })
+            .when('/Day/:year/:month/:day', {
+            templateUrl: 'public/app/components/dayEdit/dayEdit.html',
+            controller: 'dayEditController as dayEditCtrl',
+            resolve: resolveAuthentication([])
+        })
             .otherwise({
             redirectTo: '/Today'
         });

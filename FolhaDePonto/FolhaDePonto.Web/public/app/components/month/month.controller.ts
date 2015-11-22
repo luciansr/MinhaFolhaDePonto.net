@@ -5,11 +5,13 @@
         .module('folhaDePonto')
         .controller('monthController', controller);
 
-    controller.$inject = ['$scope', 'monthService', '$routeParams']; 
+    controller.$inject = ['$scope', 'monthService', '$routeParams', '$location']; 
 
-    function controller($scope, monthService: FolhaDePonto.Services.MonthService, $routeParams) {
+    function controller($scope, monthService: FolhaDePonto.Services.MonthService, $routeParams, $location: ng.ILocationService) {
         /* jshint validthis:true */
         var vm = this;
+
+        vm.editDay = editDay;
 
         activate();
 
@@ -17,6 +19,12 @@
             monthService.GetMonthInfo($routeParams.year, $routeParams.month).then(function (data) {
                 vm.mes = data;
             });
+        }
+
+        
+
+        function editDay(day) {
+            $location.path('/Day/' + $routeParams.year + '/' + $routeParams.month + '/' + day.Dia);
         }
     }
 })();

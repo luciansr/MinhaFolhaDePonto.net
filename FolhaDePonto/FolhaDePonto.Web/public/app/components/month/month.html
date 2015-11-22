@@ -17,6 +17,7 @@
                         <th class="text-center">Fim Almoco</th>
                         <th class="text-center">Fim Expediente</th>
                         <th class="text-center">Saldo de Horas</th>
+                        <th class="text-center">Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,8 @@
                         <td ng-bind="dia.FimAlmoco"></td>
                         <td ng-bind="dia.FimExpediente"></td>
                         <td ng-bind="dia.SaldoDeHorasDoMes"></td>
+                        <td><i ng-click="monthCtrl.editDay(dia)" class="fa fa-cog cursor-pointer"></i></td>
+                        
                     </tr>
                 </tbody>
             </table>
