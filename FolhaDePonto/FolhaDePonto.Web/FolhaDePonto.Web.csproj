@@ -216,6 +216,7 @@
     <Compile Include="Controllers\DayController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EditDayParamViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="public\libs\block-ui\README.md" />

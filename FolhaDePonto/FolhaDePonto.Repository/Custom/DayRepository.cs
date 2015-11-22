@@ -16,5 +16,10 @@ namespace FolhaDePonto.Repository.Custom
         public IEnumerable<Dia> GetDaysFromMonthAndUser(int Year, int Month, int UserId) {
             return Get(d => d.Mes == Month && d.Ano == Year && d.Usuario.Id == UserId);
         }
+
+        public Dia GetDay(DateTime dia, int UserId)
+        {
+            return Get(d => d.Mes == dia.Month && d.Ano == dia.Year && d.DiaDoMes == dia.Day && d.Usuario.Id == UserId).FirstOrDefault();
+        }
     }
 }

@@ -54,18 +54,26 @@
             var self = this;
             var deferred = self.$q.defer();
 
-            self.$window.localStorage["userInfo"] = null;
-            self.userInfo = null;
-            self.$rootScope.Usuario = null;
-
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
+            function finishLogout() {
                 deferred.resolve(true);
                 self.$rootScope.$evalAsync(function () {
                     self.$location.path('/Login');
                 });
-            });
+            }
+
+            self.$window.localStorage["userInfo"] = null;
+            self.userInfo = null;
+            self.$rootScope.Usuario = null;
+
+            if (gapi) {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                    finishLogout();
+                });
+            } else {
+                finishLogout();
+            }
 
             return deferred.promise;
         }

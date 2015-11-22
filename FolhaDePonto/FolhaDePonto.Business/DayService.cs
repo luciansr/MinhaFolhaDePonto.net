@@ -18,8 +18,9 @@ namespace FolhaDePonto.Business
         {
         }
 
-        public IEnumerable<Dia> GetDaysFromMonthAndUser(int year, int month, int userId) {
-            return _uow.Dias.GetDaysFromMonthAndUser(year , month, userId);
+        public IEnumerable<Dia> GetDaysFromMonthAndUser(int year, int month, int userId)
+        {
+            return _uow.Dias.GetDaysFromMonthAndUser(year, month, userId);
         }
 
 
@@ -33,10 +34,6 @@ namespace FolhaDePonto.Business
             if (diasDoMesCorrespondente.FirstOrDefault(d => d.Mes != day.Month) != null) return null;
 
             Dia dia = diasDoMesCorrespondente.FirstOrDefault(d => d.DiaDoMes == day.Day);
-
-            //if (dia == null) {
-            //    return null;
-            //}
 
             DayInfo dayInfo = new DayInfo(day.Year, day.Month, day.Day);
 
@@ -60,17 +57,58 @@ namespace FolhaDePonto.Business
 
             IEnumerable<TimeSpan> totalHorasExtras = diasValidos
                                                         .Where(d => d.Tipo == TipoDia.UTIL)
-                                                        .Select(d => 
-                                                            (d.FimExpediente.Value - d.InicioExpediente) 
-                                                            - (d.FimAlmoco.Value - dia.InicioAlmoco.Value) 
+                                                        .Select(d =>
+                                                            (d.FimExpediente.Value - d.InicioExpediente)
+                                                            - (d.FimAlmoco.Value - dia.InicioAlmoco.Value)
                                                             - new TimeSpan(8, 0, 0)
                                                         );
 
             dayInfo.SaldoDeHorasDoMes = new TimeSpan(totalHorasExtras.Sum(d => d.Ticks));
 
-            //TODO estatísticas
-
             return dayInfo;
+        }
+
+        public void EditDay(DateTime day, TimeSpan inicioExpediente, TimeSpan inicioAlmoco, TimeSpan fimAlmoco, TimeSpan fimExpediente, int UserId)
+        {
+            Dia dia = GetOrCreateDay(day, UserId);
+
+            dia.InicioExpediente = inicioExpediente;
+            dia.InicioAlmoco = inicioAlmoco;
+            dia.FimAlmoco = fimAlmoco;
+            dia.FimExpediente = fimExpediente;
+
+            _uow.Save();
+        }
+
+        private Dia GetOrCreateDay(DateTime day, int UserId)
+        {
+            Dia dia = _uow.Dias.GetDay(day, UserId);
+
+            if (dia != null)
+            {
+                return dia;
+            }
+
+            Usuario usuario = _uow.Usuarios.GetByID(UserId);
+
+            if (usuario != null)
+            {
+                dia = new Dia
+                {
+                    Ano = day.Year,
+                    DiaDoMes = day.Day,
+                    Mes = day.Month,
+                    Usuario = usuario,
+                    InicioExpediente = DateTime.Now.TimeOfDay
+                };
+
+                _uow.Dias.Insert(dia);
+                _uow.Save();
+
+                dia = _uow.Dias.GetDay(day, UserId);
+            }
+
+            return dia;
         }
     }
 }

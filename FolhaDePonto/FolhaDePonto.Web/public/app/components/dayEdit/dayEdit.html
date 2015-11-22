@@ -40,9 +40,9 @@
 
                 <div class="form-group">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="submit" class="btn btn-primary pull-right">Próximo dia</button>
-                        <button type="submit" class="btn btn-primary pull-right" style="margin-right:5px">Dia anterior</button>
+                        <button type="submit" ng-click="dayEditCtrl.editDay()" class="btn btn-primary">Salvar</button>
+                        <button type="submit" ng-click="dayEditCtrl.nextDay()" class="btn btn-primary pull-right">Próximo dia</button>
+                        <button type="submit" ng-click="dayEditCtrl.previousDay()" class="btn btn-primary pull-right" style="margin-right:5px">Dia anterior</button>
                     </div>
                 </div>
             </fieldset>
