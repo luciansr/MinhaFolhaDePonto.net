@@ -43,6 +43,7 @@
     <Compile Include="DBModels\Dia.cs" />
     <Compile Include="DBModels\Usuario.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\MonthInfo.cs" />
     <Compile Include="Models\DayInfo.cs" />
     <Compile Include="Models\GoogleUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

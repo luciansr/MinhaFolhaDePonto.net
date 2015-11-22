@@ -14,49 +14,33 @@ namespace FolhaDePonto.Business
 {
     public class MonthService : BaseService
     {
-        public MonthService(IUnitOfWork uow) : base(uow)
+        private DayService _dayService;
+
+        public MonthService(IUnitOfWork uow, DayService dayService) : base(uow)
         {
+            _dayService = dayService;
         }
 
-        public DayInfo GetMonthInfo(int Year, int Month, int UserId)
+        public MonthInfo GetMonthInfo(int Year, int Month, int UserId)
         {
+            if (Month < 1 || Month > 12) return null;
             IEnumerable<Dia> diasDoMes = _uow.Dias.GetDaysFromMonthAndUser(Year, Month, UserId);
-
-            //if (dia == null) {
-            //    return null;
-            //}
-
-            DayInfo dayInfo = new DayInfo();
-
-            if (dia != null)
-            {
-                dayInfo.InicioAlmoco = dia.InicioAlmoco;
-                dayInfo.FimAlmoco = dia.FimAlmoco;
-                dayInfo.FimExpediente = dia.FimExpediente;
-                dayInfo.InicioExpediente = dia.InicioExpediente;
-                dayInfo.Tipo = dia.Tipo;
-            }
-
-            IEnumerable<Dia> diasValidos = diasDoMes.Where(d => d.DiaDoMes < day.Day
-                                                                  && d.FimAlmoco.HasValue
-                                                                  && d.FimExpediente.HasValue
-                                                                  && d.InicioAlmoco.HasValue);
-
-            dayInfo.DiasAindaSemInformacao = (day.Day - 1) - diasValidos.Count();
-
-            IEnumerable<TimeSpan> totalHorasExtras = diasValidos
-                                                        .Where(d => d.Tipo == TipoDia.UTIL)
-                                                        .Select(d => 
-                                                            (d.FimExpediente.Value - d.InicioExpediente) 
-                                                            - (d.FimAlmoco.Value - dia.InicioAlmoco.Value) 
-                                                            - new TimeSpan(8, 0, 0)
+            
+            IEnumerable<DayInfo> diasMesComInfo = Enumerable.Range(1, DateTime.DaysInMonth(Year, Month))
+                                                        .Select(day => 
+                                                            _dayService.GetDayInfoFromMonth(new DateTime(Year, Month, day), diasDoMes)
                                                         );
 
-            dayInfo.SaldoDeHorasDoMes = new TimeSpan(totalHorasExtras.Sum(d => d.Ticks));
+            diasMesComInfo = diasMesComInfo.OrderBy(d => d.Dia);
 
-            //TODO estatísticas
+            MonthInfo mesInfo = new MonthInfo
+            {
+                diasMes = diasMesComInfo,
+                DiasAindaSemInformacao = diasMesComInfo.Last().DiasAindaSemInformacao + (diasMesComInfo.Last().ValidDay ? 0 : 1),
+                SaldoDeHorasDoMes = diasMesComInfo.Last().SaldoDeHorasDoMes
+            };
 
-            return dayInfo;
+            return mesInfo;
         }
     }
 }

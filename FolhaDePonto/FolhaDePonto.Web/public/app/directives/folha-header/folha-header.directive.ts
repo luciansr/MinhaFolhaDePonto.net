@@ -35,7 +35,7 @@
                 },
                 {
                     title: 'Mês atual',
-                    href: '#/Month/' + hoje.getFullYear() + '/' + hoje.getMonth()
+                    href: '#/Month/' + hoje.getFullYear() + '/' + (hoje.getMonth() + 1)
                 }
             ];
 

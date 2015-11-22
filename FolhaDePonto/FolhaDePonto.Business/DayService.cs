@@ -18,17 +18,27 @@ namespace FolhaDePonto.Business
         {
         }
 
+        public IEnumerable<Dia> GetDaysFromMonthAndUser(int year, int month, int userId) {
+            return _uow.Dias.GetDaysFromMonthAndUser(year , month, userId);
+        }
+
+
         public DayInfo GetDayInfo(DateTime day, int UserId)
         {
-            IEnumerable<Dia> diasDoMes = _uow.Dias.GetDaysFromMonthAndUser(day.Year, day.Month, UserId);
+            return GetDayInfoFromMonth(day, this.GetDaysFromMonthAndUser(day.Year, day.Month, UserId));
+        }
 
-            Dia dia = diasDoMes.FirstOrDefault(d => d.DiaDoMes == day.Day);
+        public DayInfo GetDayInfoFromMonth(DateTime day, IEnumerable<Dia> diasDoMesCorrespondente)
+        {
+            if (diasDoMesCorrespondente.FirstOrDefault(d => d.Mes != day.Month) != null) return null;
+
+            Dia dia = diasDoMesCorrespondente.FirstOrDefault(d => d.DiaDoMes == day.Day);
 
             //if (dia == null) {
             //    return null;
             //}
 
-            DayInfo dayInfo = new DayInfo();
+            DayInfo dayInfo = new DayInfo(day.Year, day.Month, day.Day);
 
             if (dia != null)
             {
@@ -37,9 +47,11 @@ namespace FolhaDePonto.Business
                 dayInfo.FimExpediente = dia.FimExpediente;
                 dayInfo.InicioExpediente = dia.InicioExpediente;
                 dayInfo.Tipo = dia.Tipo;
+
+                dayInfo.ValidDay = dia.FimAlmoco.HasValue && dia.FimExpediente.HasValue && dia.InicioAlmoco.HasValue;
             }
 
-            IEnumerable<Dia> diasValidos = diasDoMes.Where(d => d.DiaDoMes < day.Day
+            IEnumerable<Dia> diasValidos = diasDoMesCorrespondente.Where(d => d.DiaDoMes < day.Day
                                                                   && d.FimAlmoco.HasValue
                                                                   && d.FimExpediente.HasValue
                                                                   && d.InicioAlmoco.HasValue);

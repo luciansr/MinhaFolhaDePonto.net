@@ -28,3 +28,4 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('ngProgressService', FolhaDePonto.ProgressBar.NGProgressService);
 })();
+//# sourceMappingURL=ngProgress.service.js.map

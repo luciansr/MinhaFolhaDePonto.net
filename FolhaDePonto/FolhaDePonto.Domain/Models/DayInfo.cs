@@ -9,6 +9,18 @@ namespace FolhaDePonto.Domain.Models
 {
     public class DayInfo
     {
+        public DayInfo(int Ano, int Mes, int Dia) {
+            this.Ano = Ano;
+            this.Mes = Mes;
+            this.Dia = Dia;
+        }
+
+        public int Ano { get; set; }
+        public int Mes { get; set; }
+        public int Dia { get; set; }
+
+        public bool ValidDay { get; set; }
+        
         public TipoDia? Tipo { get; set; }
         public TimeSpan? InicioExpediente { get; set; }
         public TimeSpan? InicioAlmoco { get; set; }

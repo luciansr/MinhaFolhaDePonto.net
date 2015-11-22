@@ -26,7 +26,7 @@
                 },
                 {
                     title: 'Mês atual',
-                    href: '#/Month/' + hoje.getFullYear() + '/' + hoje.getMonth()
+                    href: '#/Month/' + hoje.getFullYear() + '/' + (hoje.getMonth() + 1)
                 }
             ];
             function isActive(item) {
@@ -55,3 +55,4 @@
         return directive;
     }
 })();
+//# sourceMappingURL=folha-header.directive.js.map

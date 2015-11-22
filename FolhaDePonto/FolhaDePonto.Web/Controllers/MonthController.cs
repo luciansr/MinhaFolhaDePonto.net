@@ -12,20 +12,20 @@ namespace FolhaDePonto.Web.Controllers
 {
     public class MonthController : BaseController
     {
-        private DayService _dayService { get; set; }
+        private MonthService _monthService { get; set; }
 
-        public MonthController(DayService dayService)
+        public MonthController(MonthService monthService)
         {
-            _dayService = dayService;
+            _monthService = monthService;
         }
 
         [HttpGet]
-        public IHttpActionResult GetDayInfo(DateTime day)
+        public IHttpActionResult GetMonthInfo(int Year, int Month)
         {
             try
             {
-                DayInfo dayInfo = _dayService.GetDayInfo(day, AuthenticatedUser.Id);
-                return Ok(dayInfo);
+                MonthInfo monthInfo = _monthService.GetMonthInfo(Year, Month, AuthenticatedUser.Id);
+                return Ok(monthInfo);
             }
             catch (Exception e)
             {
