@@ -22,15 +22,14 @@
             this.$window = $window;
             this.$rootScope = $rootScope;
             this.$location = $location;
-            this.$window.localStorage["userInfo"] = null;
+            //this.$window.localStorage["userInfo"] = null;
 
             //this.$rootScope.Usuario = {};
 
-            //if ($window.localStorage["userInfo"]) {
-            //    //this.setUserInfo($window.localStorage["userInfo"]);
-            //    this.userInfo = JSON.parse($window.localStorage["userInfo"]);
-            //    this.$rootScope.Usuario = this.userInfo;
-            //}
+            if ($window.localStorage["userInfo"]) {
+                this.userInfo = JSON.parse($window.localStorage["userInfo"]);
+                this.$rootScope.Usuario = this.userInfo;
+            }
         }
 
         public UserHasAccess(allowedRoles: Array<string>): boolean {

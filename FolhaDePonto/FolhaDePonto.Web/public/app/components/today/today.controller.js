@@ -12,4 +12,3 @@
         function activate() { }
     }
 })();
-//# sourceMappingURL=today.controller.js.map

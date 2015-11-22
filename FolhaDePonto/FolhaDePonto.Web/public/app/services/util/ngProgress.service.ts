@@ -11,12 +11,12 @@
 
             public Start() {
                 NProgress.start();
-                console.log('np progress :: start');
+                //console.log('np progress :: start');
             }
 
             public Done() {
                 NProgress.done();
-                console.log('np progress :: done');
+                //console.log('np progress :: done');
             }
         }
     }

@@ -10,11 +10,11 @@ var FolhaDePonto;
             }
             NGProgressService.prototype.Start = function () {
                 NProgress.start();
-                console.log('np progress :: start');
+                //console.log('np progress :: start');
             };
             NGProgressService.prototype.Done = function () {
                 NProgress.done();
-                console.log('np progress :: done');
+                //console.log('np progress :: done');
             };
             NGProgressService.$inject = [];
             return NGProgressService;
@@ -28,4 +28,3 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('ngProgressService', FolhaDePonto.ProgressBar.NGProgressService);
 })();
-//# sourceMappingURL=ngProgress.service.js.map

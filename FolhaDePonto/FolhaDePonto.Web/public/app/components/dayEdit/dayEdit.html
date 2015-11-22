@@ -1,10 +1,54 @@
 ﻿<div class="container principal">
     <div class="page-header">
-        <h1 ng-bind="todayCtrl.today | date:'mediumDate'"></h1>
+        <h1 ng-bind="dayEditCtrl.today | date:'mediumDate'"></h1>
     </div>
-    <p class="lead"><button class="btn btn-success btn-lg">Cheguei</button></p>
-    <p class="lead"><button class="btn btn-success btn-lg">Saí para almoçar</button> <button class="btn btn-primary btn-lg">Marcar 1h de almoço</button></p>
-    <p class="lead"><button class="btn btn-success btn-lg">Voltei do almoço</button> <button class="btn btn-primary btn-lg">Marcar 1h de almoço</button></p>
-    <p class="lead"><button class="btn btn-success btn-lg">Estou indo pra casa</button></p>
+
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Edição de dia</legend>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Cheguei</label>
+                    <div class="col-lg-8">
+                        <input type="time" class="form-control" ng-model="dayEditCtrl.dia.InicioExpediente" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Fui almoçar</label>
+                    <div class="col-lg-8">
+                        <input type="time" class="form-control" ng-model="dayEditCtrl.dia.InicioAlmoco" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Voltei do almoço</label>
+                    <div class="col-lg-8">
+                        <input type="time" class="form-control" ng-model="dayEditCtrl.dia.FimAlmoco" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Fui pra casa</label>
+                    <div class="col-lg-8">
+                        <input type="time" class="form-control" ng-model="dayEditCtrl.dia.FimExpediente" />
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="submit" class="btn btn-primary pull-right">Próximo dia</button>
+                        <button type="submit" class="btn btn-primary pull-right" style="margin-right:5px">Dia anterior</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+
 
 </div>

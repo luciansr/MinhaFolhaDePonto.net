@@ -61,4 +61,3 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('toastrService', FolhaDePonto.Log.ToastrService);
 })();
-//# sourceMappingURL=toastr.service.js.map
