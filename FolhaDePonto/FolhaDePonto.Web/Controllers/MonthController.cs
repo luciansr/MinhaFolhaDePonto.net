@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace FolhaDePonto.Web.Controllers
 {
+    [Authorize]
     public class MonthController : BaseController
     {
         private MonthService _monthService { get; set; }

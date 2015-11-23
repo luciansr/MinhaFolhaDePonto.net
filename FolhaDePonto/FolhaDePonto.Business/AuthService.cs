@@ -34,8 +34,18 @@ namespace FolhaDePonto.Business
 
                     identity.AddClaim(new Claim("Nome", usuario.Nome));
                     identity.AddClaim(new Claim("ID", usuario.Id.ToString()));
-                    identity.AddClaim(new Claim("Role", "User"));
-                    identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
+
+                    if (usuario.Email == "luciansr@gmail.com")
+                    {
+                        identity.AddClaim(new Claim("Role", "Admin"));
+                        identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+                    }
+                    else
+                    {
+
+                        identity.AddClaim(new Claim("Role", "User"));
+                        identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
+                    }
 
                     identity.AddClaim(new Claim("Fullname", usuario.NomeCompleto));
                     identity.AddClaim(new Claim("Lastname", usuario.Sobrenome));
@@ -59,7 +69,8 @@ namespace FolhaDePonto.Business
         {
             Usuario usuario = GetUser(googleUser.email);
 
-            if (usuario == null) {
+            if (usuario == null)
+            {
                 usuario = new Usuario
                 {
                     Email = googleUser.email,

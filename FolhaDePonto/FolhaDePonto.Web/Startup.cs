@@ -1,5 +1,4 @@
-﻿using FolhaDePonto.Business;
-using FolhaDePonto.Infrastructure;
+﻿using FolhaDePonto.Infrastructure;
 using FolhaDePonto.Web.Authentication;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;

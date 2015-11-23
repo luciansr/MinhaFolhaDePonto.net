@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace FolhaDePonto.Web.Controllers
 {
+    [Authorize]
     public class DayController : BaseController
     {
 
