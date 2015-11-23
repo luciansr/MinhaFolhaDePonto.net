@@ -36,7 +36,7 @@ namespace FolhaDePonto.Business
             MonthInfo mesInfo = new MonthInfo
             {
                 diasMes = diasMesComInfo,
-                DiasAindaSemInformacao = diasMesComInfo.Last().DiasAindaSemInformacao + (diasMesComInfo.Last().ValidDay ? 0 : 1),
+                DiasAindaSemInformacao = diasMesComInfo.Last().DiasAindaSemInformacao,
                 SaldoDeHorasDoMes = diasMesComInfo.Last().SaldoDeHorasDoMes
             };
 

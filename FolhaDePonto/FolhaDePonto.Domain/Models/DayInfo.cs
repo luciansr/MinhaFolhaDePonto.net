@@ -20,7 +20,8 @@ namespace FolhaDePonto.Domain.Models
         public int Dia { get; set; }
 
         public bool ValidDay { get; set; }
-        
+        public bool IsWeekend { get; set; }
+
         public TipoDia? Tipo { get; set; }
         public TimeSpan? InicioExpediente { get; set; }
         public TimeSpan? InicioAlmoco { get; set; }
@@ -29,5 +30,6 @@ namespace FolhaDePonto.Domain.Models
 
         public int DiasAindaSemInformacao { get; set; }
         public TimeSpan SaldoDeHorasDoMes { get; set; }
+        public TimeSpan SaldoDeHoras { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FolhaDePonto.Domain.DBModels
 {
-    public enum TipoDia { UTIL = 1, FERIADO = 2, FOLGA = 3, FERIAS = 4 }
+    public enum TipoDia { NA = 0, UTIL = 1, FERIADO = 2, FOLGA = 3, FERIAS = 4 }
 
     public class Dia
     {

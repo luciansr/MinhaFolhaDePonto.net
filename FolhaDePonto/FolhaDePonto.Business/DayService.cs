@@ -35,8 +35,12 @@ namespace FolhaDePonto.Business
 
             Dia dia = diasDoMesCorrespondente.FirstOrDefault(d => d.DiaDoMes == day.Day);
 
-            DayInfo dayInfo = new DayInfo(day.Year, day.Month, day.Day);
+            diasDoMesCorrespondente = diasDoMesCorrespondente.OrderBy(d => d.DiaDoMes);
 
+            DayInfo dayInfo = new DayInfo(day.Year, day.Month, day.Day);
+            dayInfo.IsWeekend = day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday;
+            //try
+            //{
             if (dia != null)
             {
                 dayInfo.InicioAlmoco = dia.InicioAlmoco;
@@ -48,22 +52,56 @@ namespace FolhaDePonto.Business
                 dayInfo.ValidDay = dia.FimAlmoco.HasValue && dia.FimExpediente.HasValue && dia.InicioAlmoco.HasValue;
             }
 
-            IEnumerable<Dia> diasValidos = diasDoMesCorrespondente.Where(d => d.DiaDoMes < day.Day
-                                                                  && d.FimAlmoco.HasValue
-                                                                  && d.FimExpediente.HasValue
-                                                                  && d.InicioAlmoco.HasValue);
+            IEnumerable<Dia> diasValidos = diasDoMesCorrespondente.Where(d => d.DiaDoMes <= day.Day
+                                                                          && d.FimAlmoco.HasValue
+                                                                          && d.FimExpediente.HasValue
+                                                                          && d.InicioAlmoco.HasValue);
 
-            dayInfo.DiasAindaSemInformacao = (day.Day - 1) - diasValidos.Count();
+            IEnumerable<Dia> diasValidosOuFinalDeSemana = diasDoMesCorrespondente.Where(d =>
+            {
+                var diaDaSemana = new DateTime(d.Ano, d.Mes, d.DiaDoMes).DayOfWeek;
+                bool retorno = d.DiaDoMes <= day.Day
+                        && (d.FimAlmoco.HasValue
+                        && d.FimExpediente.HasValue
+                        && d.InicioAlmoco.HasValue
+                        || diaDaSemana == DayOfWeek.Saturday
+                        || diaDaSemana == DayOfWeek.Sunday);
+                return retorno;
+            });
+
+            int diasValidosOuFinalDeSemanaCount = diasValidosOuFinalDeSemana.Count();
+
+            for (int i = diasValidosOuFinalDeSemana.Last().DiaDoMes + 1; i <= DateTime.DaysInMonth(day.Year, day.Month) || i <= day.Day; ++i) {
+                DateTime diaNaoContabilizado = new DateTime(day.Year, day.Month, i);
+
+                if (diaNaoContabilizado.DayOfWeek == DayOfWeek.Saturday || diaNaoContabilizado.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    ++diasValidosOuFinalDeSemanaCount;
+                }
+            }
+
+            dayInfo.DiasAindaSemInformacao = (day.Day) - diasValidosOuFinalDeSemanaCount;
+
+            if (dayInfo.ValidDay)
+            {
+                dayInfo.SaldoDeHoras = ((dayInfo.FimExpediente.Value - dayInfo.InicioExpediente)
+                                                                - (dayInfo.FimAlmoco.Value - dayInfo.InicioAlmoco.Value)
+                                                                - new TimeSpan(8, 0, 0)).Value;
+            }
 
             IEnumerable<TimeSpan> totalHorasExtras = diasValidos
-                                                        .Where(d => d.Tipo == TipoDia.UTIL)
+                                                        .Where(d => d.Tipo == TipoDia.UTIL || d.Tipo == TipoDia.NA)
                                                         .Select(d =>
                                                             (d.FimExpediente.Value - d.InicioExpediente)
-                                                            - (d.FimAlmoco.Value - dia.InicioAlmoco.Value)
+                                                            - (d.FimAlmoco.Value - d.InicioAlmoco.Value)
                                                             - new TimeSpan(8, 0, 0)
                                                         );
 
+
             dayInfo.SaldoDeHorasDoMes = new TimeSpan(totalHorasExtras.Sum(d => d.Ticks));
+
+            //}
+            //catch { }
 
             return dayInfo;
         }

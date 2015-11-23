@@ -1,6 +1,6 @@
 ﻿<div class="container principal">
     <div class="page-header">
-        <h1 ng-bind="dayEditCtrl.today | date:'mediumDate'"></h1>
+        <h1>{{dayEditCtrl.today | date:'mediumDate'}} <span ng-if="dayEditCtrl.dia.IsWeekend" style="color:darkred">[FDS] <i class="fa fa-smile-o"></i></span></h1>
     </div>
 
     <div class="well bs-component">

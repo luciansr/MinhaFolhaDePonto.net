@@ -5,15 +5,20 @@
         .module('folhaDePonto')
         .controller('todayController', controller);
 
-    controller.$inject = ['$scope']; 
+    controller.$inject = ['$scope', 'dayService']; 
 
-    function controller($scope) {
+    function controller($scope, dayService: FolhaDePonto.Services.DayService) {
         /* jshint validthis:true */
         var vm = this;
         vm.today = new Date();
 
         activate();
 
-        function activate() { }
+        function activate() {
+            dayService.GetDayInfo(vm.today).then(function (data) {
+                vm.dia = data;
+            });
+
+        }
     }
 })();

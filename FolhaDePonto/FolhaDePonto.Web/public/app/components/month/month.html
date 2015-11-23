@@ -2,7 +2,8 @@
     <div class="page-header">
         <h1 ng-bind="monthCtrl.today | date:'MMMM' | capitalize"></h1>
     </div>
-    
+    <p class="lead">Dias que não foram contabilizados esse mês: <code ng-bind="monthCtrl.mes.DiasAindaSemInformacao"></code></p>
+    <p class="lead">Saldo de horas do mês <code ng-bind="monthCtrl.mes.SaldoDeHorasDoMes | date: 'hh:mm:ss'"></code></p>
     <div class="panel panel-default">
         <div class="panel-heading">Dias do mês</div>
         <div class="panel-body" style="padding:0">
@@ -21,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="dia in monthCtrl.mes.diasMes" class="text-center">
+                    <tr ng-repeat="dia in monthCtrl.mes.diasMes" class="text-center" ng-class="{'success': dia.IsWeekend}">
                         <td ng-bind="dia.Dia"></td>
                         <td ng-bind="dia.ValidDay ? 'Sim': 'Não'"></td>
                         <!--<td ng-bind="dia.Tipo"></td>-->
@@ -29,7 +30,7 @@
                         <td ng-bind="dia.InicioAlmoco"></td>
                         <td ng-bind="dia.FimAlmoco"></td>
                         <td ng-bind="dia.FimExpediente"></td>
-                        <td ng-bind="dia.SaldoDeHorasDoMes"></td>
+                        <td ng-bind="dia.SaldoDeHoras"></td>
                         <td><i ng-click="monthCtrl.editDay(dia)" class="fa fa-cog cursor-pointer"></i></td>
                         
                     </tr>
@@ -37,8 +38,5 @@
             </table>
         </div>
     </div>
-
-    <p class="lead">Dias que não foram contabilizados esse mês: <code ng-bind="monthCtrl.mes.DiasAindaSemInformacao"></code></p>
-    <p class="lead">Saldo de horas do mês <code ng-bind="monthCtrl.mes.SaldoDeHorasDoMes | date: 'hh:mm:ss'"></code></p>
 
 </div>
