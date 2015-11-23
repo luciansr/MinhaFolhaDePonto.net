@@ -60,4 +60,3 @@ var googleApiId;
         return directive;
     }
 })();
-//# sourceMappingURL=google-login.directive.js.map

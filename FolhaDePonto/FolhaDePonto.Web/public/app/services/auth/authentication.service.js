@@ -77,7 +77,7 @@ var FolhaDePonto;
                         self.$window.localStorage["userInfo"] = JSON.stringify(self.userInfo);
                         self.$rootScope.Usuario = self.userInfo;
                         deferred.resolve(true);
-                        self.$location.path('/');
+                        self.$location.path('/Today');
                     }
                     else {
                         deferred.resolve(false);
@@ -99,4 +99,3 @@ var FolhaDePonto;
         .module('folhaDePonto')
         .service('authenticationService', FolhaDePonto.Services.AuthenticationService);
 })();
-//# sourceMappingURL=authentication.service.js.map

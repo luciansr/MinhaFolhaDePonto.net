@@ -199,7 +199,9 @@
     <Content Include="public\libs\NProgress\nprogress.js" />
     <Content Include="public\libs\toastr\toastr.min.css" />
     <Content Include="public\libs\toastr\toastr.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UnityResolver.cs" />
@@ -229,6 +231,9 @@
     <Content Include="public\libs\fonts\fontawesome-webfont.woff" />
     <Content Include="public\libs\fonts\fontawesome-webfont.woff2" />
     <Content Include="public\libs\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\testeasdasd.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

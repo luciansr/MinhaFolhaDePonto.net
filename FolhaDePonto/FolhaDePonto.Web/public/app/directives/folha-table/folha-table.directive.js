@@ -28,4 +28,3 @@
         return directive;
     }
 })();
-//# sourceMappingURL=folha-table.directive.js.map

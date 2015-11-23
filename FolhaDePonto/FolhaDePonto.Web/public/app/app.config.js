@@ -32,7 +32,7 @@
         };
         $routeProvider
             .when('/', {
-            redirectTo: 'Today'
+            redirectTo: 'Login'
         })
             .when('/Login', {
             templateUrl: 'public/app/components/login/login.html',
@@ -86,4 +86,3 @@
         });
     }
 })();
-//# sourceMappingURL=app.config.js.map
