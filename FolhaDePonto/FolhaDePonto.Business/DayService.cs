@@ -71,7 +71,8 @@ namespace FolhaDePonto.Business
 
             int diasValidosOuFinalDeSemanaCount = diasValidosOuFinalDeSemana.Count();
 
-            for (int i = diasValidosOuFinalDeSemana.Last().DiaDoMes + 1; i <= DateTime.DaysInMonth(day.Year, day.Month) || i <= day.Day; ++i) {
+            for (int i = diasValidosOuFinalDeSemana.Last().DiaDoMes + 1; i <= DateTime.DaysInMonth(day.Year, day.Month) || i <= day.Day; ++i)
+            {
                 DateTime diaNaoContabilizado = new DateTime(day.Year, day.Month, i);
 
                 if (diaNaoContabilizado.DayOfWeek == DayOfWeek.Saturday || diaNaoContabilizado.DayOfWeek == DayOfWeek.Sunday)
@@ -113,7 +114,10 @@ namespace FolhaDePonto.Business
             dia.InicioExpediente = inicioExpediente;
             dia.InicioAlmoco = inicioAlmoco;
             dia.FimAlmoco = fimAlmoco;
-            dia.FimExpediente = fimExpediente;
+
+            if (fimExpediente.Ticks > 0) {
+                dia.FimExpediente = fimExpediente;
+            }
 
             _uow.Save();
         }

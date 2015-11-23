@@ -1,12 +1,19 @@
 ﻿<div class="container principal">
     <div class="page-header">
-        <h1 ng-bind="todayCtrl.today | date:'mediumDate'"></h1>
+        <h1>{{todayCtrl.today | date:'mediumDate'}} <span ng-if="todayCtrl.dia.IsWeekend" style="color:darkred">[FDS] <i class="fa fa-smile-o"></i></span></h1>
     </div>
 
-    <p class="lead"><button class="btn btn-success btn-lg">Cheguei</button></p>
-    <!--<p class="lead"><button class="btn btn-success btn-lg">Saí para almoçar</button> <button class="btn btn-primary btn-lg">Marcar 1h de almoço</button></p>
-    <p class="lead"><button class="btn btn-success btn-lg">Voltei do almoço</button> <button class="btn btn-primary btn-lg">Marcar 1h de almoço</button></p>-->
-    <p class="lead"><button class="btn btn-success btn-lg">Estou indo pra casa</button></p>
+    <p class="lead" ng-if="!todayCtrl.dia.InicioExpediente">
+        <button class="btn btn-success btn-lg" ng-click="todayCtrl.startClicked()">Cheguei</button>
+    </p>
+
+    <p class="lead" ng-if="todayCtrl.dia.InicioExpediente && !todayCtrl.dia.FimExpediente">
+        <button class="btn btn-success btn-lg" ng-click="todayCtrl.endClicked()">Estou indo pra casa</button>
+    </p>
+
+    <p class="lead" ng-if="todayCtrl.dia.InicioExpediente && todayCtrl.dia.FimExpediente">
+        Você já marcou seu horário hoje <button class="btn btn-primary btn-lg" ng-click="todayCtrl.goToEditPage()">Editar dia</button>
+    </p>
 
     <p class="lead">Dias que não foram contabilizados até hoje nesse mês: <code ng-bind="todayCtrl.dia.DiasAindaSemInformacao"></code></p>
     <p class="lead">Saldo de horas do mês <code ng-bind="todayCtrl.dia.SaldoDeHorasDoMes | date: 'hh:mm:ss'"></code></p>
