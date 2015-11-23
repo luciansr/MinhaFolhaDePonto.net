@@ -71,7 +71,13 @@ namespace FolhaDePonto.Business
 
             int diasValidosOuFinalDeSemanaCount = diasValidosOuFinalDeSemana.Count();
 
-            for (int i = diasValidosOuFinalDeSemana.Last().DiaDoMes + 1; i <= DateTime.DaysInMonth(day.Year, day.Month) || i <= day.Day; ++i)
+            int ultimoDiaDaSequencia = 0;
+
+            if (diasValidosOuFinalDeSemana.Count() > 1) {
+                ultimoDiaDaSequencia = diasValidosOuFinalDeSemana.Last().DiaDoMes;
+            }
+
+            for (int i = ultimoDiaDaSequencia + 1; i <= DateTime.DaysInMonth(day.Year, day.Month) || i <= day.Day; ++i)
             {
                 DateTime diaNaoContabilizado = new DateTime(day.Year, day.Month, i);
 

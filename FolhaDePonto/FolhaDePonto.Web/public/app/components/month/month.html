@@ -1,13 +1,17 @@
 ﻿<div class="container principal">
     <div class="page-header">
-        <h1 ng-bind="monthCtrl.today | date:'MMMM' | capitalize"></h1>
+        <h1 ng-bind="monthCtrl.month | date:'MMMM, yyyy' | capitalize"></h1>
     </div>
     <p class="lead">Dias que não foram contabilizados esse mês: <code ng-bind="monthCtrl.mes.DiasAindaSemInformacao"></code></p>
-    <p class="lead">Saldo de horas do mês <code ng-bind="monthCtrl.mes.SaldoDeHorasDoMes | date: 'hh:mm:ss'"></code></p>
+    <p class="lead">
+        Saldo de horas do mês <code ng-bind="monthCtrl.mes.SaldoDeHorasDoMes | date: 'hh:mm:ss'"></code>
+        <button type="submit" ng-click="monthCtrl.nextMonth()" class="btn btn-primary pull-right">Próximo mês</button>
+        <button type="submit" ng-click="monthCtrl.previousMonth()" class="btn btn-primary pull-right" style="margin-right:5px">Mês anterior</button>
+    </p>
     <div class="panel panel-default">
         <div class="panel-heading">Dias do mês</div>
         <div class="panel-body" style="padding:0">
-            <table class="table table-striped table-hover" style="margin:0" >
+            <table class="table table-striped table-hover" style="margin:0">
                 <thead>
                     <tr>
                         <th class="text-center">Dia</th>
@@ -32,7 +36,7 @@
                         <td ng-bind="dia.FimExpediente"></td>
                         <td ng-bind="dia.SaldoDeHoras"></td>
                         <td><i ng-click="monthCtrl.editDay(dia)" class="fa fa-cog cursor-pointer"></i></td>
-                        
+
                     </tr>
                 </tbody>
             </table>
