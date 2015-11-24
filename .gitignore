@@ -15,9 +15,6 @@
 /FolhaDePonto/packages
 /FolhaDePonto/FolhaDePonto.Web/App_Data/AppDB_log.ldf
 /FolhaDePonto/FolhaDePonto.Web/App_Data/AppDB.mdf
-/FolhaDePonto/FolhaDePonto.Web/public/app/services/http/month.service.js.map
-/FolhaDePonto/FolhaDePonto.Web/public/app/services/http/month.service.js
-/FolhaDePonto/FolhaDePonto.Web/public/app/services/http/day.service.js.map
 /FolhaDePonto/FolhaDePonto.Business/bin/Release
 /FolhaDePonto/FolhaDePonto.Business/obj/Release
 /FolhaDePonto/FolhaDePonto.Domain/bin/Release

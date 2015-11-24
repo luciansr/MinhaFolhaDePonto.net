@@ -29,6 +29,7 @@ namespace FolhaDePonto.Business
             return GetDayInfoFromMonth(day, this.GetDaysFromMonthAndUser(day.Year, day.Month, UserId));
         }
 
+
         public DayInfo GetDayInfoFromMonth(DateTime day, IEnumerable<Dia> diasDoMesCorrespondente)
         {
             if (diasDoMesCorrespondente.FirstOrDefault(d => d.Mes != day.Month) != null) return null;
@@ -43,10 +44,15 @@ namespace FolhaDePonto.Business
             //{
             if (dia != null)
             {
+
                 dayInfo.InicioAlmoco = dia.InicioAlmoco;
+
                 dayInfo.FimAlmoco = dia.FimAlmoco;
+
                 dayInfo.FimExpediente = dia.FimExpediente;
+
                 dayInfo.InicioExpediente = dia.InicioExpediente;
+
                 dayInfo.Tipo = dia.Tipo;
 
                 dayInfo.ValidDay = dia.FimAlmoco.HasValue && dia.FimExpediente.HasValue && dia.InicioAlmoco.HasValue;
@@ -73,7 +79,8 @@ namespace FolhaDePonto.Business
 
             int ultimoDiaDaSequencia = 0;
 
-            if (diasValidosOuFinalDeSemana.Count() > 1) {
+            if (diasValidosOuFinalDeSemana.Count() > 1)
+            {
                 ultimoDiaDaSequencia = diasValidosOuFinalDeSemana.Last().DiaDoMes;
             }
 
@@ -113,16 +120,37 @@ namespace FolhaDePonto.Business
             return dayInfo;
         }
 
+        private bool TimeSpanIsValid(TimeSpan timeSpan)
+        {
+            return timeSpan != null && timeSpan.Ticks > 0;
+        }
+
+        private TimeSpan GetOnlyHoursAndMinutes(TimeSpan timeSpan) {
+            return new TimeSpan(timeSpan.Hours, timeSpan.Minutes, 0);
+        }
+
         public void EditDay(DateTime day, TimeSpan inicioExpediente, TimeSpan inicioAlmoco, TimeSpan fimAlmoco, TimeSpan fimExpediente, int UserId)
         {
             Dia dia = GetOrCreateDay(day, UserId);
 
-            dia.InicioExpediente = inicioExpediente;
-            dia.InicioAlmoco = inicioAlmoco;
-            dia.FimAlmoco = fimAlmoco;
+            if (TimeSpanIsValid(inicioExpediente))
+            {
+                dia.InicioExpediente = GetOnlyHoursAndMinutes(inicioExpediente);
+            }
 
-            if (fimExpediente.Ticks > 0) {
-                dia.FimExpediente = fimExpediente;
+            if (TimeSpanIsValid(inicioAlmoco))
+            {
+                dia.InicioAlmoco = GetOnlyHoursAndMinutes(inicioAlmoco);
+            }
+
+            if (TimeSpanIsValid(fimAlmoco))
+            {
+                dia.FimAlmoco = GetOnlyHoursAndMinutes(fimAlmoco);
+            }
+
+            if (TimeSpanIsValid(fimExpediente))
+            {
+                dia.FimExpediente = GetOnlyHoursAndMinutes(fimExpediente);
             }
 
             _uow.Save();
