@@ -32,8 +32,12 @@ namespace FolhaDePonto.Business
                 {
                     ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-                    identity.AddClaim(new Claim("Nome", usuario.Nome));
                     identity.AddClaim(new Claim("ID", usuario.Id.ToString()));
+
+                    if(usuario.Nome != null) identity.AddClaim(new Claim("Nome", usuario.Nome));
+                    if (usuario.NomeCompleto != null) identity.AddClaim(new Claim("Fullname", usuario.NomeCompleto));
+                    if (usuario.Sobrenome != null) identity.AddClaim(new Claim("Lastname", usuario.Sobrenome));
+                    if (usuario.Email != null) identity.AddClaim(new Claim("Email", usuario.Email));
 
                     if (usuario.Email == "luciansr@gmail.com")
                     {
@@ -42,15 +46,9 @@ namespace FolhaDePonto.Business
                     }
                     else
                     {
-
                         identity.AddClaim(new Claim("Role", "User"));
                         identity.AddClaim(new Claim(ClaimTypes.Role, "User"));
                     }
-
-                    identity.AddClaim(new Claim("Fullname", usuario.NomeCompleto));
-                    identity.AddClaim(new Claim("Lastname", usuario.Sobrenome));
-                    identity.AddClaim(new Claim("Email", usuario.Email));
-                    identity.AddClaim(new Claim("ImageUrl", usuario.UrlImagem));
 
                     return identity;
                 }
